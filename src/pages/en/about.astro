@@ -1,12 +1,133 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import AboutTeam from "@/components/about/AboutTeam.astro";
 import CtaCentered from "@/components/cta/CtaCentered.astro";
-import AboutHeader from "@/components/about/AboutHeader.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getTranslatedData } from "@/js/translationUtils";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const siteData = getTranslatedData("siteData", currLocale);
+const ab = getTranslatedData("aboutData", currLocale);
 ---
 
-<BaseLayout title="About Us" description="Meet the amazing team that makes Zenith so special.">
-  <AboutHeader />
-  <AboutTeam />
+<BaseLayout
+  title={`${ab.heroBadge} – ${ab.heroHeading}`}
+  description={ab.heroText}
+>
+  <!-- Hero -->
+  <section class="-mt-23 items-center overflow-hidden pt-23">
+    <div class="relative pt-20 pb-24 lg:pb-32">
+      <div class="site-container">
+        <div class="max-w-3xl" data-mos="fade-up">
+          <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
+            {ab.heroBadge}
+          </span>
+          <h1 class="font-heading xl:text-10xl mb-8 text-7xl tracking-tighter lg:text-8xl">
+            {ab.heroHeading}
+          </h1>
+          <p class="text-muted-foreground max-w-2xl text-lg leading-relaxed">{ab.heroText}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="bg-base-50/50 dark:bg-base-900/30 py-20 md:py-28">
+    <div class="site-container">
+      <div class="grid gap-12 md:grid-cols-2">
+        <div data-mos="fade-right">
+          <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
+            {ab.missionBadge}
+          </span>
+          <h2 class="h2 mb-6">{ab.missionHeading}</h2>
+          <p class="text-muted-foreground leading-relaxed">{ab.missionText}</p>
+        </div>
+        <div data-mos="fade-left">
+          <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
+            {ab.visionBadge}
+          </span>
+          <h2 class="h2 mb-6">{ab.visionHeading}</h2>
+          <p class="text-muted-foreground leading-relaxed">{ab.visionText}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise -->
+  <section class="py-20 md:py-28">
+    <div class="site-container">
+      <div class="mb-12 max-w-2xl" data-mos="fade-up">
+        <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
+          {ab.expertiseBadge}
+        </span>
+        <h2 class="h2 mb-4">{ab.expertiseHeading}</h2>
+      </div>
+      <div class="grid gap-8 md:grid-cols-3">
+        {
+          ab.expertise.map((item, i) => (
+            <div data-mos="fade-up" data-mos-delay={`${i * 0.15}`}>
+              <span class="text-primary mb-4 block text-5xl font-bold opacity-30">
+                {item.number}
+              </span>
+              <h3 class="mb-3 text-2xl font-semibold">{item.title}</h3>
+              <p class="text-muted-foreground">{item.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="bg-base-50/50 dark:bg-base-900/30 py-20 md:py-28">
+    <div class="site-container">
+      <div class="mb-12 max-w-2xl" data-mos="fade-up">
+        <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
+          {ab.servicesBadge}
+        </span>
+        <h2 class="h2 mb-4">{ab.servicesHeading}</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          ab.services.map((item, i) => (
+            <div
+              class="bg-base-100/30 dark:bg-base-900/50 rounded-3xl border border-white/10 p-8"
+              data-mos="fade-up"
+              data-mos-delay={`${i * 0.1}`}
+            >
+              <h3 class="mb-3 text-xl font-semibold">{item.title}</h3>
+              <p class="text-muted-foreground text-sm">{item.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- References -->
+  <section class="py-20 md:py-28">
+    <div class="site-container">
+      <div class="mb-12 max-w-2xl" data-mos="fade-up">
+        <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
+          {ab.referencesBadge}
+        </span>
+        <h2 class="h2 mb-4">{ab.referencesHeading}</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2">
+        {
+          ab.references.map((item, i) => (
+            <div
+              class="bg-base-100/30 dark:bg-base-900/30 rounded-3xl border border-white/10 p-8"
+              data-mos="fade-up"
+              data-mos-delay={`${i * 0.1}`}
+            >
+              <h3 class="mb-2 text-lg font-semibold">{item.title}</h3>
+              <p class="text-muted-foreground text-sm">{item.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
   <CtaCentered />
 </BaseLayout>

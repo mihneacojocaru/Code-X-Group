@@ -12,11 +12,15 @@ import navDataEn from "./en/navData.json";
 import faqDataEn from "./en/faqData.json";
 import testimonialDataEn from "./en/testimonialData.json";
 import teamDataEn from "./en/teamData.json";
+import homepageDataEn from "./en/homepageData.json";
+import aboutDataEn from "./en/aboutData.json";
 import siteDataDe from "./de/siteData.json";
 import navDataDe from "./de/navData.json";
 import faqDataDe from "./de/faqData.json";
 import testimonialDataDe from "./de/testimonialData.json";
 import teamDataDe from "./de/teamData.json";
+import homepageDataDe from "./de/homepageData.json";
+import aboutDataDe from "./de/aboutData.json";
 
 export const dataTranslations = {
   de: {
@@ -25,6 +29,8 @@ export const dataTranslations = {
     faqData: faqDataDe,
     testimonialData: testimonialDataDe,
     teamData: teamDataDe,
+    homepageData: homepageDataDe,
+    aboutData: aboutDataDe,
   },
   en: {
     siteData: siteDataEn,
@@ -32,6 +38,8 @@ export const dataTranslations = {
     faqData: faqDataEn,
     testimonialData: testimonialDataEn,
     teamData: teamDataEn,
+    homepageData: homepageDataEn,
+    aboutData: aboutDataEn,
   },
 } as const;
 
@@ -165,10 +173,6 @@ export const localizedCollections = {
   blog: {
     de: "blog",
     en: "blog",
-  },
-  careers: {
-    de: "careers",
-    en: "careers",
   },
   // Add more collections/locales as needed
 } as const;

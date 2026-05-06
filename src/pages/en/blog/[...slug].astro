@@ -19,10 +19,11 @@ import CustomH6 from "@/components/markdown-components/CustomH6.astro";
 import { siteSettings } from "@/config/siteSettings.json";
 
 // utils
-import { getAllPosts } from "@/js/blogUtils";
+import { getAllPostsForLocale } from "@/js/blogUtils";
+import { defaultLocale } from "@/config/siteSettings.json";
 
 export async function getStaticPaths() {
-  const posts = await getAllPosts("en");
+  const posts = await getAllPostsForLocale(defaultLocale);
 
   return posts.map((post) => ({
     params: { slug: post.id },

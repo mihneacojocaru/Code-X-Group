@@ -62,6 +62,21 @@ export async function getAllPosts(
 
 // --------------------------------------------------------
 /**
+ * Like getAllPosts but falls back to "en" if the requested locale has no posts.
+ * Use this in page files so DE pages show EN posts until DE posts exist.
+ */
+export async function getAllPostsForLocale(
+  lang: (typeof locales)[number],
+): Promise<CollectionEntry<"blog">[]> {
+  const posts = await getAllPosts(lang);
+  if (posts.length === 0 && lang !== "en") {
+    return getAllPosts("en");
+  }
+  return posts;
+}
+
+// --------------------------------------------------------
+/**
  * * returns all blog posts in a formatted array
  * @param posts: CollectionEntry<"blog">[] - array of posts, unformatted
  * note: this has an optional options object, params below

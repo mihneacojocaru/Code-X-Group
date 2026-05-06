@@ -1,76 +1,111 @@
 ---
-// layout
 import BaseLayout from "@/layouts/BaseLayout.astro";
-
-// components
 import HeroSideImage from "@/components/hero/HeroSideImage.astro";
-import HeroCenterImage from "@/components/hero/HeroCenterImage.astro";
-import HeroCenterDashboard from "@/components/hero/HeroCenterDashboard.astro";
-
-import LogoCloudMarquee from "@/components/logo-cloud/LogoCloudMarquee.astro";
-import LogoCloudStatic from "@/components/logo-cloud/LogoCloudStatic.astro";
-import LogoCloudStaticSimple from "@/components/logo-cloud/LogoCloudStaticSimple.astro";
-
-import FeatureSideImage from "@/components/feature/FeatureSideImage.astro";
-import FeatureSideImageWide from "@/components/feature/FeatureSideImageWide.astro";
-import FeatureNumbers from "@/components/feature/FeatureNumbers.astro";
-import FeatureExpand from "@/components/feature/FeatureExpand.astro";
-import FeatureToggle from "@/components/feature/FeatureToggle.astro";
-import FeatureTiltCards from "@/components/feature/FeatureTiltCards.astro";
-
-import PricingThreeCards from "@/components/pricing/PricingThreeCards.astro";
-import PricingTable from "@/components/pricing/PricingTable.astro";
-import PricingTwoCards from "@/components/pricing/PricingTwoCards.astro";
-import PricingTwoCardsSimple from "@/components/pricing/PricingTwoCardsSimple.astro";
-
-import TestimonialSwiper from "@/components/testimonials/TestimonialSwiper.astro";
-import TestimonialsExpand from "@/components/testimonials/TestimonialsExpand.astro";
-
-import FaqAccordions from "@/components/faq/FaqAccordions.astro";
-import FaqAccordionsPlain from "@/components/faq/FaqAccordionsPlain.astro";
-
 import CtaCentered from "@/components/cta/CtaCentered.astro";
-import CtaNewsletter from "@/components/cta/CtaNewsletter.astro";
-import CtaCenteredNewsletter from "@/components/cta/CtaCenteredNewsletter.astro";
-
-// utils
 import { getLocaleFromUrl } from "@/js/localeUtils";
 import { getTranslatedData } from "@/js/translationUtils";
 
-// data
 const currLocale = getLocaleFromUrl(Astro.url);
 const siteData = getTranslatedData("siteData", currLocale);
+const hp = getTranslatedData("homepageData", currLocale);
 ---
 
 <BaseLayout title={siteData.title} description={siteData.description}>
-  <!-- <HeroSideImage /> -->
-  <HeroCenterImage />
-  <!-- <HeroCenterDashboard /> -->
+  <HeroSideImage />
 
-  <!-- <LogoCloudStatic /> -->
-  <!-- <LogoCloudStaticSimple /> -->
-  <LogoCloudMarquee />
+  <!-- Problem Section -->
+  <section class="py-20 md:py-28">
+    <div class="site-container">
+      <div class="mb-12 max-w-2xl" data-mos="fade-up">
+        <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
+          {hp.problemBadge}
+        </span>
+        <h2 class="h2 mb-4">{hp.problemHeading}</h2>
+        <p class="text-muted-foreground text-lg">{hp.problemIntro}</p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        {
+          hp.problems.map((item, i) => (
+            <div
+              class="bg-base-100/30 dark:bg-base-900/30 rounded-3xl border border-white/10 p-8"
+              data-mos="fade-up"
+              data-mos-delay={`${i * 0.1}`}
+            >
+              <h3 class="mb-3 text-xl font-semibold">{item.title}</h3>
+              <p class="text-muted-foreground">{item.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 
-  <FeatureSideImageWide />
-  <!-- <FeatureNumbers /> -->
-  <!-- <FeatureSideImage /> -->
-  <!-- <FeatureExpand /> -->
-  <FeatureTiltCards />
-  <FeatureToggle />
+  <!-- Services Section -->
+  <section class="py-20 md:py-28">
+    <div class="site-container">
+      <div class="mb-12 max-w-2xl" data-mos="fade-up">
+        <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
+          {hp.servicesBadge}
+        </span>
+        <h2 class="h2 mb-4">{hp.servicesHeading}</h2>
+        <p class="text-muted-foreground text-lg">{hp.servicesIntro}</p>
+      </div>
+      <div class="grid gap-8 md:grid-cols-3">
+        {
+          hp.services.map((item, i) => (
+            <div data-mos="fade-up" data-mos-delay={`${i * 0.15}`}>
+              <span class="text-primary mb-4 block text-5xl font-bold opacity-30">
+                {item.number}
+              </span>
+              <h3 class="mb-3 text-2xl font-semibold">{item.title}</h3>
+              <p class="text-muted-foreground">{item.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 
-  <TestimonialSwiper />
-  <!-- <TestimonialsExpand /> -->
-
-  <!-- <PricingThreeCards /> -->
-  <PricingTable />
-  <!-- <PricingTwoCards /> -->
-  <!-- <PricingTwoCardsSimple /> -->
-
-  <FaqAccordionsPlain />
-  <!-- <FaqAccordions /> -->
-  <!-- <FaqCards /> -->
+  <!-- Industries Section -->
+  <section class="bg-base-50/50 dark:bg-base-900/30 py-20 md:py-28">
+    <div class="site-container">
+      <div class="mb-12 max-w-2xl" data-mos="fade-up">
+        <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
+          {hp.industriesBadge}
+        </span>
+        <h2 class="h2 mb-4">{hp.industriesHeading}</h2>
+        <p class="text-muted-foreground text-lg">{hp.industriesIntro}</p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2">
+        {
+          hp.industries.map((item, i) => (
+            <div
+              class="flex gap-5 rounded-2xl p-6"
+              data-mos="fade-up"
+              data-mos-delay={`${i * 0.1}`}
+            >
+              <div class="bg-primary/10 text-primary mt-1 flex size-10 shrink-0 items-center justify-center rounded-xl">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="mb-2 text-lg font-semibold">{item.title}</h3>
+                <p class="text-muted-foreground">{item.description}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 
   <CtaCentered />
-  <!-- <CtaNewsletter /> -->
-  <!-- <CtaCenteredNewsletter /> -->
 </BaseLayout>

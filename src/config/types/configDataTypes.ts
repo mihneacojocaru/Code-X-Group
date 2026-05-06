@@ -67,6 +67,51 @@ export interface teamMember {
 }
 
 // --------------------------------------------------------
+// homepage data types
+export interface HomepageItem {
+  title: string;
+  description: string;
+}
+
+export interface HomepageData {
+  problemBadge: string;
+  problemHeading: string;
+  problemIntro: string;
+  problems: HomepageItem[];
+  servicesBadge: string;
+  servicesHeading: string;
+  servicesIntro: string;
+  services: (HomepageItem & { number: string })[];
+  industriesBadge: string;
+  industriesHeading: string;
+  industriesIntro: string;
+  industries: HomepageItem[];
+}
+
+// --------------------------------------------------------
+// about page data types
+export interface AboutData {
+  heroBadge: string;
+  heroHeading: string;
+  heroText: string;
+  missionBadge: string;
+  missionHeading: string;
+  missionText: string;
+  visionBadge: string;
+  visionHeading: string;
+  visionText: string;
+  expertiseBadge: string;
+  expertiseHeading: string;
+  expertise: (HomepageItem & { number: string })[];
+  servicesBadge: string;
+  servicesHeading: string;
+  services: HomepageItem[];
+  referencesBadge: string;
+  referencesHeading: string;
+  references: HomepageItem[];
+}
+
+// --------------------------------------------------------
 // site settings types
 export interface SiteSettingsProps {
   useViewTransitions?: boolean;

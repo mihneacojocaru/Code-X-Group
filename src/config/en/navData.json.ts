@@ -13,15 +13,15 @@ import { type navItem } from "../types/configDataTypes";
 const navConfig: navItem[] = [
   {
     text: "Home",
-    link: "/en/",
+    link: "/",
   },
   {
     text: "About",
-    link: "/en/about",
+    link: "/about",
   },
   {
     text: "Blog",
-    link: "/en/blog/",
+    link: "/blog/",
   },
 ];
 

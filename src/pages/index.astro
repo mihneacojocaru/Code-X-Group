@@ -1,80 +1,13 @@
 ---
-// layout
 import BaseLayout from "@/layouts/BaseLayout.astro";
-
-// components
 import HeroSideImage from "@/components/hero/HeroSideImage.astro";
 import CtaCentered from "@/components/cta/CtaCentered.astro";
-
-// utils
 import { getLocaleFromUrl } from "@/js/localeUtils";
 import { getTranslatedData } from "@/js/translationUtils";
 
-// data
 const currLocale = getLocaleFromUrl(Astro.url);
 const siteData = getTranslatedData("siteData", currLocale);
-
-const problems = [
-  {
-    title: "Keine Skalierung",
-    description:
-      "Datenraum-Technologien werden nicht in marktrelevanter Breite adoptiert – trotz milliardenschwerer europäischer Investitionen.",
-  },
-  {
-    title: "Unklare Modelle",
-    description:
-      "Geschäftsmodelle bleiben vage, Monetarisierungspfade fehlen – ohne klare Wertschöpfung scheitert jede Initiative.",
-  },
-  {
-    title: "Fragmentierte Governance",
-    description:
-      "Fehlende einheitliche Governance-Strukturen verhindern den Markterfolg und lähmen die gemeinsame Wertschöpfung.",
-  },
-];
-
-const services = [
-  {
-    number: "01",
-    title: "Strategie",
-    description:
-      "Klare Positionierung, tragfähige Geschäftsmodelle und strukturierter Markteinstieg für Daten-Ökosysteme.",
-  },
-  {
-    number: "02",
-    title: "Ökosysteme",
-    description:
-      "Design und Orchestrierung von Multi-Stakeholder-Umgebungen mit effektiver Governance und klaren Rollenmodellen.",
-  },
-  {
-    number: "03",
-    title: "Investition",
-    description:
-      "Entwicklung von Venture-Capital-Strukturen, Finanzierungsstrategien und Investment-Thesen für Datenräume.",
-  },
-];
-
-const industries = [
-  {
-    title: "Fertigung & Industrie",
-    description:
-      "Manufacturing-X, industrielle Plattformen und unternehmensübergreifende Datenkollaboration.",
-  },
-  {
-    title: "Technologieanbieter",
-    description:
-      "Datendifferenzierung, Plattformstrategie und Marktpositionierung für Tech-Unternehmen.",
-  },
-  {
-    title: "Gesundheit & EHDS",
-    description:
-      "Positionierung im European Health Data Space – Ecosystem-Rollen und Governance-Modelle.",
-  },
-  {
-    title: "Verbände & Organisationen",
-    description:
-      "Strategische Neuausrichtung, Governance-Modelle und Mehrwert für Mitgliedsorganisationen.",
-  },
-];
+const hp = getTranslatedData("homepageData", currLocale);
 ---
 
 <BaseLayout title={siteData.title} description={siteData.description}>
@@ -84,18 +17,15 @@ const industries = [
   <section class="py-20 md:py-28">
     <div class="site-container">
       <div class="mb-12 max-w-2xl" data-mos="fade-up">
-        <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter"
-          >Das Problem</span
-        >
-        <h2 class="h2 mb-4">Warum Datenräume heute scheitern</h2>
-        <p class="text-muted-foreground text-lg">
-          Trotz milliardenschwerer europäischer Investitionen verfehlen Datenraum-Initiativen ihre
-          Ziele. Die Ursache liegt nicht in der Technologie – sondern in Strategie und Operations.
-        </p>
+        <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
+          {hp.problemBadge}
+        </span>
+        <h2 class="h2 mb-4">{hp.problemHeading}</h2>
+        <p class="text-muted-foreground text-lg">{hp.problemIntro}</p>
       </div>
       <div class="grid gap-6 md:grid-cols-3">
         {
-          problems.map((item, i) => (
+          hp.problems.map((item, i) => (
             <div
               class="bg-base-100/30 dark:bg-base-900/30 rounded-3xl border border-white/10 p-8"
               data-mos="fade-up"
@@ -114,18 +44,15 @@ const industries = [
   <section class="py-20 md:py-28">
     <div class="site-container">
       <div class="mb-12 max-w-2xl" data-mos="fade-up">
-        <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter"
-          >Was wir tun</span
-        >
-        <h2 class="h2 mb-4">Drei Kerndisziplinen</h2>
-        <p class="text-muted-foreground text-lg">
-          Code-X verbindet Technologie und Business, Regulierung und Markt, Innovation und
-          Investment.
-        </p>
+        <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
+          {hp.servicesBadge}
+        </span>
+        <h2 class="h2 mb-4">{hp.servicesHeading}</h2>
+        <p class="text-muted-foreground text-lg">{hp.servicesIntro}</p>
       </div>
       <div class="grid gap-8 md:grid-cols-3">
         {
-          services.map((item, i) => (
+          hp.services.map((item, i) => (
             <div data-mos="fade-up" data-mos-delay={`${i * 0.15}`}>
               <span class="text-primary mb-4 block text-5xl font-bold opacity-30">
                 {item.number}
@@ -143,26 +70,21 @@ const industries = [
   <section class="bg-base-50/50 dark:bg-base-900/30 py-20 md:py-28">
     <div class="site-container">
       <div class="mb-12 max-w-2xl" data-mos="fade-up">
-        <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter"
-          >Branchen</span
-        >
-        <h2 class="h2 mb-4">Für wen wir arbeiten</h2>
-        <p class="text-muted-foreground text-lg">
-          Wir begleiten Organisationen aus unterschiedlichen Industrien auf dem Weg zu tragfähigen
-          Datenraum-Geschäftsmodellen.
-        </p>
+        <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
+          {hp.industriesBadge}
+        </span>
+        <h2 class="h2 mb-4">{hp.industriesHeading}</h2>
+        <p class="text-muted-foreground text-lg">{hp.industriesIntro}</p>
       </div>
       <div class="grid gap-6 md:grid-cols-2">
         {
-          industries.map((item, i) => (
+          hp.industries.map((item, i) => (
             <div
               class="flex gap-5 rounded-2xl p-6"
               data-mos="fade-up"
               data-mos-delay={`${i * 0.1}`}
             >
-              <div
-                class="bg-primary/10 text-primary mt-1 flex size-10 shrink-0 items-center justify-center rounded-xl"
-              >
+              <div class="bg-primary/10 text-primary mt-1 flex size-10 shrink-0 items-center justify-center rounded-xl">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="size-5"

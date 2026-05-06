@@ -6,19 +6,18 @@ import { getCollection, type CollectionEntry } from "astro:content";
 // utils
 import { defaultLocale } from "@/config/siteSettings.json";
 import { getTranslatedData } from "@/js/translationUtils";
-import { getAllPosts } from "@/js/blogUtils";
+import { getAllPostsForLocale } from "@/js/blogUtils";
 
 // data
 const siteData = getTranslatedData("siteData", defaultLocale);
 
-// you can switch the RSS locale here to something else if desired
-const rssLocale = "en";
+const rssLocale = defaultLocale;
 
 // this is needed for getAuthorName() and getAuthorEmail() below
 const authors: CollectionEntry<"authors">[] = await getCollection("authors");
 
 export async function GET(context: APIContext) {
-  const posts = await getAllPosts(rssLocale);
+  const posts = await getAllPostsForLocale(rssLocale);
 
   // TODO: (maybe?) handle multiple authors instead of just putting the first author's data
   return rss({

@@ -9,11 +9,11 @@ import PostCardSmall from "@/components/post-card/PostCardSmall.astro";
 import PostCardLarge from "@/components/post-card/PostCardLarge.astro";
 
 // utils
-import { getAllPosts } from "@/js/blogUtils";
+import { getAllPostsForLocale } from "@/js/blogUtils";
 import { getLocaleFromUrl } from "@/js/localeUtils";
 
 const currLocale = getLocaleFromUrl(Astro.url);
-const posts = await getAllPosts(currLocale);
+const posts = await getAllPostsForLocale(currLocale);
 ---
 
 <BaseLayout
