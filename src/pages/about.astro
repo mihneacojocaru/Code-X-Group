@@ -1,0 +1,222 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CtaCentered from "@/components/cta/CtaCentered.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getTranslatedData } from "@/js/translationUtils";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const siteData = getTranslatedData("siteData", currLocale);
+
+const expertise = [
+  {
+    number: "01",
+    title: "Data Space Expertise",
+    description:
+      "Langjährige Erfahrung in der Konzeption und Skalierung europäischer Datenraum-Initiativen: Manufacturing-X, Factory-X, sphinX, EHDS und weitere.",
+  },
+  {
+    number: "02",
+    title: "Business Models",
+    description:
+      "Strategische Begleitung beim Aufbau datenbasierter, skalierbarer Geschäftsmodelle – von der Idee bis zur Marktreife.",
+  },
+  {
+    number: "03",
+    title: "Financing & Investment",
+    description:
+      "Zugang zu Venture Capital und Kenntnis europäischer Innovationsprogramme, Förderstrukturen und regulatorischer Rahmenbedingungen.",
+  },
+];
+
+const services = [
+  {
+    title: "Data Space Strategie",
+    description:
+      "Rolle im Ökosystem definieren, Geschäftsmodelle entwickeln, Marktpositionierung erarbeiten.",
+  },
+  {
+    title: "Ökosystem-Design",
+    description: "Akteure, Rollen, Governance und Wertschöpfungsmodelle gestalten und orchestrieren.",
+  },
+  {
+    title: "Venture & Investitionsmodelle",
+    description:
+      "Venture-Capital-Strukturen, Finanzierungsstrategien und Investment-Thesen entwickeln.",
+  },
+  {
+    title: "Strategische Transformation",
+    description: "Organisationsumbau und strategische Initiativen begleiten.",
+  },
+  {
+    title: "Interim & Advisory",
+    description: "Aktive Führungsrollen in Transformationsprogrammen übernehmen.",
+  },
+];
+---
+
+<BaseLayout
+  title="Über uns – Code-X Group"
+  description="Code-X macht Datenräume wirtschaftlich. Wir begleiten Organisationen von geförderten Projekten zu nachhaltigen Geschäftsmodellen."
+>
+  <!-- Hero -->
+  <section class="-mt-23 items-center overflow-hidden pt-23">
+    <div class="relative pt-20 pb-24 lg:pb-32">
+      <div class="site-container">
+        <div class="max-w-3xl" data-mos="fade-up">
+          <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter"
+            >Code-X Group</span
+          >
+          <h1 class="font-heading xl:text-10xl mb-8 text-7xl tracking-tighter lg:text-8xl">
+            Wir machen Datenräume wirtschaftlich.
+          </h1>
+          <p class="text-muted-foreground max-w-2xl text-lg leading-relaxed">
+            Code-X begleitet Organisationen von geförderten Projekten hin zu nachhaltigen
+            Geschäftsmodellen – mit klarer Strategie, starker Governance und skalierbaren Ansätzen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="bg-base-50/50 dark:bg-base-900/30 py-20 md:py-28">
+    <div class="site-container">
+      <div class="grid gap-12 md:grid-cols-2">
+        <div data-mos="fade-right">
+          <span
+            class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter"
+          >
+            Mission
+          </span>
+          <h2 class="h2 mb-6">Was uns antreibt</h2>
+          <p class="text-muted-foreground leading-relaxed">
+            Trotz milliardenschwerer europäischer Investitionen scheitern viele
+            Datenraum-Initiativen. Die Ursache liegt nicht in der Technologie – sondern in Strategie
+            und Operations. Code-X schließt diese Lücke: zwischen Technologie und Business,
+            Regulierung und Markt, Innovation und Investment.
+          </p>
+        </div>
+        <div data-mos="fade-left">
+          <span
+            class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter"
+          >
+            Vision
+          </span>
+          <h2 class="h2 mb-6">Wohin wir wollen</h2>
+          <p class="text-muted-foreground leading-relaxed">
+            Code-X wird die führende europäische Kraft in Datenraum-Strategie, KI-getriebenen
+            Ökosystemen und Plattform- und Investitionsmodellen – mit klarem Fokus auf Marktwirkung
+            und Skalierbarkeit.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise -->
+  <section class="py-20 md:py-28">
+    <div class="site-container">
+      <div class="mb-12 max-w-2xl" data-mos="fade-up">
+        <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter"
+          >Kompetenz</span
+        >
+        <h2 class="h2 mb-4">Unsere Expertise</h2>
+      </div>
+      <div class="grid gap-8 md:grid-cols-3">
+        {
+          expertise.map((item, i) => (
+            <div data-mos="fade-up" data-mos-delay={`${i * 0.15}`}>
+              <span class="text-primary mb-4 block text-5xl font-bold opacity-30">
+                {item.number}
+              </span>
+              <h3 class="mb-3 text-2xl font-semibold">{item.title}</h3>
+              <p class="text-muted-foreground">{item.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="bg-base-50/50 dark:bg-base-900/30 py-20 md:py-28">
+    <div class="site-container">
+      <div class="mb-12 max-w-2xl" data-mos="fade-up">
+        <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter"
+          >Leistungen</span
+        >
+        <h2 class="h2 mb-4">Was wir anbieten</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          services.map((item, i) => (
+            <div
+              class="bg-base-100/30 dark:bg-base-900/50 rounded-3xl border border-white/10 p-8"
+              data-mos="fade-up"
+              data-mos-delay={`${i * 0.1}`}
+            >
+              <h3 class="mb-3 text-xl font-semibold">{item.title}</h3>
+              <p class="text-muted-foreground text-sm">{item.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- References -->
+  <section class="py-20 md:py-28">
+    <div class="site-container">
+      <div class="mb-12 max-w-2xl" data-mos="fade-up">
+        <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter"
+          >Referenzen</span
+        >
+        <h2 class="h2 mb-4">Ausgewählte Engagements</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2">
+        <div
+          class="bg-base-100/30 dark:bg-base-900/30 rounded-3xl border border-white/10 p-8"
+          data-mos="fade-up"
+          data-mos-delay="0.1"
+        >
+          <h3 class="mb-2 text-lg font-semibold">Industrieverbände</h3>
+          <p class="text-muted-foreground text-sm">
+            Neuausrichtung der Datenraum-Strategie für führende europäische Industrieverbände.
+          </p>
+        </div>
+        <div
+          class="bg-base-100/30 dark:bg-base-900/30 rounded-3xl border border-white/10 p-8"
+          data-mos="fade-up"
+          data-mos-delay="0.15"
+        >
+          <h3 class="mb-2 text-lg font-semibold">Europäische Organisationen</h3>
+          <p class="text-muted-foreground text-sm">
+            Definition der "zweiten Welle" von Datenräumen mit klarem Marktfokus.
+          </p>
+        </div>
+        <div
+          class="bg-base-100/30 dark:bg-base-900/30 rounded-3xl border border-white/10 p-8"
+          data-mos="fade-up"
+          data-mos-delay="0.2"
+        >
+          <h3 class="mb-2 text-lg font-semibold">Health-Ökosystem</h3>
+          <p class="text-muted-foreground text-sm">
+            Positionierung im European Health Data Space (EHDS) – Rollenmodell und Strategie.
+          </p>
+        </div>
+        <div
+          class="bg-base-100/30 dark:bg-base-900/30 rounded-3xl border border-white/10 p-8"
+          data-mos="fade-up"
+          data-mos-delay="0.25"
+        >
+          <h3 class="mb-2 text-lg font-semibold">Technologieanbieter</h3>
+          <p class="text-muted-foreground text-sm">
+            Aufbau neuer datengetriebener Plattformen mit differenzierter Marktstrategie.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaCentered />
+</BaseLayout>
