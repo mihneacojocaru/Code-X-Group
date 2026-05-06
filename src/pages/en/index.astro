@@ -54,7 +54,7 @@ const hp = getTranslatedData("homepageData", currLocale);
         {
           hp.services.map((item, i) => (
             <div data-mos="fade-up" data-mos-delay={`${i * 0.15}`}>
-              <span class="text-primary mb-4 block text-5xl font-bold opacity-30">
+              <span class="text-primary-accent mb-4 block text-5xl font-bold opacity-30">
                 {item.number}
               </span>
               <h3 class="mb-3 text-2xl font-semibold">{item.title}</h3>
@@ -84,7 +84,7 @@ const hp = getTranslatedData("homepageData", currLocale);
               data-mos="fade-up"
               data-mos-delay={`${i * 0.1}`}
             >
-              <div class="bg-primary/10 text-primary mt-1 flex size-10 shrink-0 items-center justify-center rounded-xl">
+              <div class="bg-primary/10 text-primary-accent mt-1 flex size-10 shrink-0 items-center justify-center rounded-xl">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="size-5"
