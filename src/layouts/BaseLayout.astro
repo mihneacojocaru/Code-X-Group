@@ -60,7 +60,7 @@ const currLocale = getLocaleFromUrl(Astro.url);
   <body id="body">
     <!-- put cookie consent first so it is seen first by screen readers -->
     <!-- <CookieConsent /> -->
-    <div id="page" class="min-h-[100lvh]">
+    <div id="page" class="min-h-[100lvh] flex flex-col">
       <Nav />
       <main class="relative overflow-x-clip">
         <slot />
