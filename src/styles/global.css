@@ -145,6 +145,10 @@
 }
 
 @layer utilities {
+  .content-padding {
+    @apply py-16 md:py-26;
+  }
+
   /* focus utility class (for when user is tabbing through items on page) */
   .primary-focus {
     @apply focus-visible:outline-outline focus-visible:rounded-xs focus-visible:outline-2 focus-visible:transition-none;

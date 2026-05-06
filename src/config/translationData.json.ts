@@ -67,6 +67,11 @@ export const textTranslations = {
     hero_text: "Turning Data Spaces into Business",
     hero_description: `Strategy, Ecosystems und Venture Models für KI & Datenräume in Europa.`,
 
+    // cta
+    cta_heading: "Let's talk.",
+    cta_text: "Wenn Sie an Datenräumen, KI oder Plattform-Ökosystemen arbeiten und echten Markterfolg erzielen möchten – sprechen wir.",
+    cta_button: "Kontakt aufnehmen",
+
     // blog
     back_to_all_posts: "Zurück zur Übersicht",
     updated: "Aktualisiert",
@@ -98,6 +103,11 @@ export const textTranslations = {
   en: {
     hero_text: "Turning Data Spaces into Business",
     hero_description: `Strategy, Ecosystems, and Venture Models for AI & Data Spaces in Europe.`,
+
+    // cta
+    cta_heading: "Let's talk.",
+    cta_text: "If you work on data spaces, AI, or platform ecosystems and want to achieve real market success — let's talk.",
+    cta_button: "Get in touch",
 
     // blog
     back_to_all_posts: "Back to all posts",

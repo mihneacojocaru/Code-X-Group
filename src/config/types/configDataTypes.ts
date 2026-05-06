@@ -73,7 +73,17 @@ export interface HomepageItem {
   description: string;
 }
 
+export interface SolutionItem {
+  icon: string;
+  title: string;
+  description: string;
+}
+
 export interface HomepageData {
+  solutionBadge: string;
+  solutionHeading: string;
+  solutionText: string;
+  solutionItems: SolutionItem[];
   problemBadge: string;
   problemHeading: string;
   problemIntro: string;
@@ -82,6 +92,7 @@ export interface HomepageData {
   servicesHeading: string;
   servicesIntro: string;
   services: (HomepageItem & { number: string })[];
+  servicesLinkText: string;
   industriesBadge: string;
   industriesHeading: string;
   industriesIntro: string;
