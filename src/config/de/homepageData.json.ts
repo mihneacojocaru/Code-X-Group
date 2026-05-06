@@ -7,17 +7,17 @@ const homepageData: HomepageData = {
     "Code-X schließt die Lücke zwischen Technologie und Geschäft, Regulierung und Markt, Innovation und Investition. Wir gestalten und implementieren Datenraum-Strategien, Plattform-Geschäftsmodelle, Governance-Strukturen und Venture-Capital-Ansätze mit klarem Fokus auf Marktwirkung.",
   solutionItems: [
     {
-      icon: "tabler/devices",
+      icon: "extra/science-computer",
       title: "Technologie",
       description: "Von Infrastruktur zu skalierbaren Plattformen",
     },
     {
-      icon: "tabler/briefcase",
+      icon: "extra/handshake",
       title: "Strategie",
       description: "Von Projekten zu nachhaltigen Geschäftsmodellen",
     },
     {
-      icon: "tabler/circle-arrow-up",
+      icon: "extra/chart",
       title: "Markt",
       description: "Von Förderlogik zu echter Marktwirkung",
     },

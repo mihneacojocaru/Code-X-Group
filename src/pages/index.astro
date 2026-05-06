@@ -59,7 +59,7 @@ const hp = getTranslatedData("homepageData", currLocale);
                 {hp.solutionItems.map((item, i) => (
                     <div class="relative flex h-24 flex-1 -mr-3 last:mr-0 items-center justify-center">
                         <div class="absolute inset-0 bg-primary [clip-path:polygon(100%_50%,90%_100%,0%_100%,10%_50%,0%_0%,90%_0%)]"/>
-                        <Icon name={item.icon} class="relative z-10 size-10 text-primary-foreground"/>
+                        <Icon name={item.icon} class="relative z-10 size-10 md:size-14 text-primary-foreground"/>
                     </div>
                 ))}
             </div>
@@ -68,7 +68,7 @@ const hp = getTranslatedData("homepageData", currLocale);
             <div class="flex flex-col md:grid md:grid-cols-3 gap-4" data-mos="fade-up" data-mos-delay="0.35">
                 {hp.solutionItems.map((item) => (
                     <div class="flex flex-col items-center">
-                        <h3 class="mb-2 text-xl font-bold">{item.title}</h3>
+                        <h3 class="mb-2 text-2xl font-semibold">{item.title}</h3>
                         <p class="text-muted-foreground">{item.description}</p>
                     </div>
                 ))}
@@ -119,11 +119,11 @@ const hp = getTranslatedData("homepageData", currLocale);
                 <h2 class="h2 mb-4">{hp.industriesHeading}</h2>
                 <p class="text-muted-foreground text-lg">{hp.industriesIntro}</p>
             </div>
-            <div class="grid gap-6 md:grid-cols-2">
+            <div class="grid gap-8 md:grid-cols-2">
                 {
                     hp.industries.map((item, i) => (
                         <div
-                            class="flex gap-5 rounded-2xl p-6"
+                            class="flex gap-6 rounded-2xl p-4"
                             data-mos="fade-up"
                             data-mos-delay={`${i * 0.1}`}
                         >
@@ -141,7 +141,7 @@ const hp = getTranslatedData("homepageData", currLocale);
                             </div>
                             <div>
                                 <h3 class="mb-2 text-lg font-semibold">{item.title}</h3>
-                                <p class="text-muted-foreground">{item.description}</p>
+                                <p class="text-muted-foreground max-w-md">{item.description}</p>
                             </div>
                         </div>
                     ))

@@ -7,17 +7,17 @@ const homepageData: HomepageData = {
     "Code-X bridges the gap between technology and business, regulation and market, innovation and investment. We design and implement data space strategies, platform business models, governance structures, and venture capital approaches with a clear focus on market impact.",
   solutionItems: [
     {
-      icon: "tabler/devices",
+      icon: "extra/science-computer",
       title: "Technology",
       description: "From infrastructure to scalable platforms",
     },
     {
-      icon: "tabler/briefcase",
+      icon: "extra/handshake",
       title: "Strategy",
       description: "From projects to sustainable business models",
     },
     {
-      icon: "tabler/circle-arrow-up",
+      icon: "extra/chart",
       title: "Market",
       description: "From funding logic to real market impact",
     },
