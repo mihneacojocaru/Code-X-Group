@@ -11,7 +11,8 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://zenith.cosmicthemes.com",
+  site: "https://code-x.group",
+  devToolbar: { enabled: false },
   adapter: netlify({
     imageCDN: false,
   }),
