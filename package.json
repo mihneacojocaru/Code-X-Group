@@ -3,9 +3,9 @@
   "type": "module",
   "version": "3.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
+    "dev": "node ./scripts/sync-en-pages.mjs && astro dev",
+    "start": "node ./scripts/sync-en-pages.mjs && astro dev",
+    "build": "node ./scripts/sync-en-pages.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "config-i18n": "node ./scripts/config-i18n.js",

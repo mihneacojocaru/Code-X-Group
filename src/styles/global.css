@@ -145,8 +145,8 @@
 }
 
 @layer utilities {
-  .content-padding {
-    @apply py-16 md:py-26;
+  .content-margin {
+    @apply my-16 md:my-28;
   }
 
   /* focus utility class (for when user is tabbing through items on page) */
