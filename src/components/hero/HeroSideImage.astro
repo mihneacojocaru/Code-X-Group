@@ -8,6 +8,7 @@ import Star3 from "@images/headers/star3.svg";
 import Star5 from "@images/headers/star5.svg";
 import Lines from "@images/headers/lines.svg";
 import Card from "@images/headers/card.png";
+import HeroImage from "@images/headers/hero-image.png";
 
 // components
 import Button from "@/components/button/Button.astro";
@@ -24,7 +25,7 @@ const t = useTranslations(currLocale);
   <div class="relative pt-20 pb-24 lg:pb-40">
     <div class="site-container relative mx-auto px-4">
       <div class="-m-8 flex flex-wrap items-end">
-        <div class="relative z-10 w-full p-8 md:w-1/2 lg:w-7/12">
+        <div class="relative z-10 w-full p-8 md:w-1/2 lg:w-6/12">
           <div class="md:max-w-xl">
             <div data-mos="fade-right" data-mos-anchor="#hero-side-image" data-mos-delay="0">
               <span
@@ -48,23 +49,23 @@ const t = useTranslations(currLocale);
             </div>
           </div>
         </div>
-        <div class="w-full p-8 md:w-1/2 lg:w-5/12">
-          <div class="relative mx-auto max-w-max md:mr-0">
+        <div class="w-full p-8 md:w-1/2 lg:w-6/12">
+          <div class="relative mx-auto max-w-md md:mr-0">
             <Image
-              src={Card}
-              alt="Zenith Card"
-              width={293}
+              src={HeroImage}
+              alt=""
+              width={400}
               densities={[1.5, 2]}
               quality={100}
               loading="eager"
-              class="tilt-card relative z-10"
+              class="tilt-card relative z-10 rounded-xl"
             />
 
             <Star class="text-primary absolute -top-16 -left-16" />
             <Star2 class="text-primary absolute top-56 -left-44" />
             <Star3 class="text-primary absolute -right-40 bottom-10" />
 
-            <div class="absolute -right-40 bottom-10">
+            <div class="absolute right-0 bottom-10">
               <Star5 class="text-muted/50 relative -bottom-4" />
               <Star3 class="text-primary" />
             </div>
