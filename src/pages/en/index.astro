@@ -119,29 +119,20 @@ const hp = getTranslatedData("homepageData", currLocale);
                 <h2 class="h2 mb-4">{hp.industriesHeading}</h2>
                 <p class="text-muted-foreground text-lg">{hp.industriesIntro}</p>
             </div>
-            <div class="grid gap-6 md:grid-cols-2">
+            <div class="grid gap-8 md:grid-cols-2">
                 {
                     hp.industries.map((item, i) => (
                         <div
-                            class="flex gap-5 rounded-2xl p-6"
+                            class="flex gap-6 rounded-2xl p-4"
                             data-mos="fade-up"
                             data-mos-delay={`${i * 0.1}`}
                         >
                             <div class="bg-primary/20 text-primary-accent mt-1 flex size-10 shrink-0 items-center justify-center rounded-xl">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="size-5"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                >
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                                </svg>
+                                <Icon name={item.icon} class="size-5" />
                             </div>
                             <div>
                                 <h3 class="mb-2 text-lg font-semibold">{item.title}</h3>
-                                <p class="text-muted-foreground">{item.description}</p>
+                                <p class="text-muted-foreground max-w-md">{item.description}</p>
                             </div>
                         </div>
                     ))

@@ -14,6 +14,7 @@ import testimonialDataEn from "./en/testimonialData.json";
 import teamDataEn from "./en/teamData.json";
 import homepageDataEn from "./en/homepageData.json";
 import aboutDataEn from "./en/aboutData.json";
+import contactDataEn from "./en/contactData.json";
 import siteDataDe from "./de/siteData.json";
 import navDataDe from "./de/navData.json";
 import faqDataDe from "./de/faqData.json";
@@ -21,6 +22,7 @@ import testimonialDataDe from "./de/testimonialData.json";
 import teamDataDe from "./de/teamData.json";
 import homepageDataDe from "./de/homepageData.json";
 import aboutDataDe from "./de/aboutData.json";
+import contactDataDe from "./de/contactData.json";
 
 export const dataTranslations = {
   de: {
@@ -31,6 +33,7 @@ export const dataTranslations = {
     teamData: teamDataDe,
     homepageData: homepageDataDe,
     aboutData: aboutDataDe,
+    contactData: contactDataDe,
   },
   en: {
     siteData: siteDataEn,
@@ -40,6 +43,7 @@ export const dataTranslations = {
     teamData: teamDataEn,
     homepageData: homepageDataEn,
     aboutData: aboutDataEn,
+    contactData: contactDataEn,
   },
 } as const;
 
@@ -66,6 +70,7 @@ export const textTranslations = {
   de: {
     hero_text: "Turning Data Spaces into Business",
     hero_description: `Strategy, Ecosystems und Venture Models für KI & Datenräume in Europa.`,
+    hero_button: "Jetzt sprechen",
 
     // cta
     cta_heading: "Let's talk.",
@@ -103,6 +108,7 @@ export const textTranslations = {
   en: {
     hero_text: "Turning Data Spaces into Business",
     hero_description: `Strategy, Ecosystems, and Venture Models for AI & Data Spaces in Europe.`,
+    hero_button: "Let's talk",
 
     // cta
     cta_heading: "Let's talk.",

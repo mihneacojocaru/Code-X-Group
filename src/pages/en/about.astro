@@ -5,6 +5,11 @@ import TiltCard from "@/components/feature/TiltCard.astro";
 import { getLocaleFromUrl } from "@/js/localeUtils";
 import { getTranslatedData } from "@/js/translationUtils";
 
+import Star from "@images/headers/star.svg";
+import Star2 from "@images/headers/star2.svg";
+import Star3 from "@images/headers/star3.svg";
+import Lines from "@images/headers/lines.svg";
+
 const currLocale = getLocaleFromUrl(Astro.url);
 const siteData = getTranslatedData("siteData", currLocale);
 const ab = getTranslatedData("aboutData", currLocale);
@@ -15,24 +20,32 @@ const ab = getTranslatedData("aboutData", currLocale);
   description={ab.heroText}
 >
   <!-- Hero -->
-  <section class="-mt-23 items-center overflow-hidden pt-23">
-    <div class="relative pt-20 pb-24 lg:pb-32">
-      <div class="site-container">
-        <div class="max-w-3xl" data-mos="fade-up">
-          <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
-            {ab.heroBadge}
-          </span>
-          <h1 class="font-heading xl:text-10xl mb-8 text-7xl tracking-tighter lg:text-8xl">
-            {ab.heroHeading}
-          </h1>
-          <p class="text-muted-foreground max-w-2xl text-lg leading-relaxed">{ab.heroText}</p>
+  <section class="-mt-23 relative items-center overflow-hidden pt-23">
+    <div class="pt-20 pb-24">
+      <div class="site-container relative">
+        <div class="relative z-10 text-center">
+          <div data-mos="fade-up">
+            <span class="text-primary-accent mb-2.5 inline-block text-xl font-medium tracking-tighter">
+              {ab.heroBadge}
+            </span>
+            <h1 class="font-heading xl:text-10xl mx-auto mb-8 max-w-4xl text-7xl tracking-tighter lg:text-8xl">
+              {ab.heroHeading}
+            </h1>
+          </div>
+          <p class="mx-auto mb-10 max-w-md text-lg opacity-80" data-mos="fade-up" data-mos-delay=".15">
+            {ab.heroText}
+          </p>
         </div>
       </div>
     </div>
+    <Star class="text-primary absolute top-24 right-10 hidden md:block" />
+    <Star2 class="text-primary absolute top-40 -right-4 hidden md:block" />
+    <Star3 class="text-primary absolute top-50 right-20 hidden md:block" />
+    <Lines class="absolute top-24 right-0" />
   </section>
 
   <!-- Mission & Vision -->
-  <section class="bg-base-50/50 dark:bg-base-900/30 content-margin">
+  <section class="bg-base-50/50 dark:bg-base-900/30 py-16 md:py-20">
     <div class="site-container">
       <div class="grid gap-12 md:grid-cols-2">
         <div data-mos="fade-right">
@@ -79,7 +92,7 @@ const ab = getTranslatedData("aboutData", currLocale);
   </section>
 
   <!-- Services -->
-  <section class="bg-base-50/50 dark:bg-base-900/30 content-margin">
+  <section class="bg-base-50/50 dark:bg-base-900/30 content-margin py-16 md:py-20">
     <div class="site-container">
       <div class="mb-12 max-w-2xl" data-mos="fade-up">
         <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
@@ -87,11 +100,14 @@ const ab = getTranslatedData("aboutData", currLocale);
         </span>
         <h2 class="h2 mb-4">{ab.servicesHeading}</h2>
       </div>
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-6">
         {
           ab.services.map((item, i) => (
             <div
-              class="bg-base-100/30 dark:bg-base-900/50 rounded-3xl border border-white/10 p-8"
+              class:list={[
+                "bg-base-100/30 dark:bg-base-900/50 rounded-3xl border border-white/10 p-8",
+                i < 3 ? "lg:col-span-2" : i === 3 ? "lg:col-span-2 lg:col-start-2" : "lg:col-span-2"
+              ]}
               data-mos="fade-up"
               data-mos-delay={`${i * 0.1}`}
             >

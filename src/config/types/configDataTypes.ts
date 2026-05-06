@@ -96,7 +96,7 @@ export interface HomepageData {
   industriesBadge: string;
   industriesHeading: string;
   industriesIntro: string;
-  industries: HomepageItem[];
+  industries: (HomepageItem & { icon: string })[];
 }
 
 // --------------------------------------------------------
@@ -120,6 +120,24 @@ export interface AboutData {
   referencesBadge: string;
   referencesHeading: string;
   references: HomepageItem[];
+}
+
+// --------------------------------------------------------
+// contact page data types
+export interface ContactLink {
+  title: string;
+  description: string;
+  linkText: string;
+  href: string;
+  icon: "email" | "linkedin" | "calendar";
+  external?: boolean;
+}
+
+export interface ContactData {
+  badge: string;
+  heading: string;
+  description: string;
+  contactLinks: ContactLink[];
 }
 
 // --------------------------------------------------------

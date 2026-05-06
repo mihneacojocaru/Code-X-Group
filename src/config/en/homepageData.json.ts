@@ -79,20 +79,24 @@ const homepageData: HomepageData = {
     "We guide organizations from different industries toward viable data space business models.",
   industries: [
     {
+      icon: "extra/industry",
       title: "Manufacturing & Industry",
       description:
         "Manufacturing-X, industrial platforms, and cross-enterprise data collaboration.",
     },
     {
+      icon: "extra/cloud",
       title: "Technology Providers",
       description: "Data differentiation, platform strategy, and market positioning for tech companies.",
     },
     {
+      icon: "extra/first-aid",
       title: "Health & EHDS",
       description:
         "Positioning in the European Health Data Space — ecosystem roles and governance models.",
     },
     {
+      icon: "extra/team",
       title: "Associations & Organizations",
       description:
         "Strategic repositioning, governance models, and member value for industry organizations.",

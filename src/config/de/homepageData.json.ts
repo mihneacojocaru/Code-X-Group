@@ -79,21 +79,25 @@ const homepageData: HomepageData = {
     "Wir begleiten Organisationen aus unterschiedlichen Industrien auf dem Weg zu tragfähigen Datenraum-Geschäftsmodellen.",
   industries: [
     {
+      icon: "extra/industry",
       title: "Fertigung & Industrie",
       description:
         "Manufacturing-X, industrielle Plattformen und unternehmensübergreifende Datenkollaboration.",
     },
     {
+      icon: "extra/cloud",
       title: "Technologieanbieter",
       description:
         "Datendifferenzierung, Plattformstrategie und Marktpositionierung für Tech-Unternehmen.",
     },
     {
+      icon: "extra/first-aid",
       title: "Gesundheit & EHDS",
       description:
         "Positionierung im European Health Data Space – Ecosystem-Rollen und Governance-Modelle.",
     },
     {
+      icon: "extra/team",
       title: "Verbände & Organisationen",
       description:
         "Strategische Neuausrichtung, Governance-Modelle und Mehrwert für Mitgliedsorganisationen.",
