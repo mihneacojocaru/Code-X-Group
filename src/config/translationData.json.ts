@@ -69,7 +69,7 @@ export const dataTranslations = {
 export const textTranslations = {
   de: {
     hero_text: "Turning Data Spaces into Business",
-    hero_description: `Strategy, Ecosystems und Venture Models für KI & Datenräume in Europa.`,
+    hero_description: `Strategy, Ecosystems und Venture Modelle für KI & Datenräume in Europa.`,
     hero_button: "Jetzt sprechen",
 
     // cta
@@ -82,6 +82,17 @@ export const textTranslations = {
     updated: "Aktualisiert",
     share_this_article: "Artikel teilen",
     table_of_contents: "Inhaltsverzeichnis",
+
+    // footer
+    footer_navigation: "Navigation",
+    footer_legal: "Rechtliches",
+    footer_home: "Home",
+    footer_about: "Über uns",
+    footer_blog: "Blog",
+    footer_contact: "Kontakt",
+    footer_imprint: "Impressum",
+    footer_privacy: "Datenschutz",
+    footer_copyright: "Alle Rechte vorbehalten.",
 
     // Authentication - Sign In
     signin_title: "In Ihrem Konto anmelden",
@@ -120,6 +131,17 @@ export const textTranslations = {
     updated: "Updated",
     share_this_article: "Share this article",
     table_of_contents: "Table of Contents",
+
+    // footer
+    footer_navigation: "Navigation",
+    footer_legal: "Legal",
+    footer_home: "Home",
+    footer_about: "About",
+    footer_blog: "Blog",
+    footer_contact: "Contact",
+    footer_imprint: "Imprint",
+    footer_privacy: "Privacy Policy",
+    footer_copyright: "All rights reserved.",
 
     // Authentication - Sign In
     signin_title: "Log in to your account",

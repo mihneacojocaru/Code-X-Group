@@ -9,11 +9,13 @@ import SocialIconSimple from "@/components/social/SocialIconSimple.astro";
 
 // utils
 import { getLocaleFromUrl } from "@/js/localeUtils";
-import { getTranslatedData } from "@/js/translationUtils";
+import { getTranslatedData, useTranslations } from "@/js/translationUtils";
 
 // data
 const currLocale = getLocaleFromUrl(Astro.url);
 const siteData = getTranslatedData("siteData", currLocale);
+const navData = getTranslatedData("navData", currLocale);
+const t = useTranslations(currLocale);
 
 const today = new Date();
 
@@ -24,15 +26,13 @@ interface FooterLinkItem {
 }
 
 const navigationLinks: FooterLinkItem[] = [
-  { label: "Home", href: "/", newTab: false },
-  { label: "Über uns", href: "/about", newTab: false },
-  { label: "Blog", href: "/blog", newTab: false },
-  { label: "Kontakt", href: "/contact", newTab: false },
+  ...navData.map(item => ({ label: item.text, href: item.link, newTab: false })),
+  { label: t("footer_contact"), href: currLocale === "en" ? "/en/contact" : "/contact", newTab: false },
 ];
 
 const legalLinks: FooterLinkItem[] = [
-  { label: "Impressum", href: "/impressum", newTab: false },
-  { label: "Datenschutz", href: "/privacy-policy", newTab: false },
+  { label: t("footer_imprint"), href: currLocale === "en" ? "/en/impressum" : "/impressum", newTab: false },
+  { label: t("footer_privacy"), href: currLocale === "en" ? "/en/privacy-policy" : "/privacy-policy", newTab: false },
 ];
 
 const contactLinks: ComponentProps<typeof SocialIconSimple>[] = [
@@ -55,13 +55,13 @@ const contactLinks: ComponentProps<typeof SocialIconSimple>[] = [
       <div class="flex max-w-sm flex-col items-start">
         <SiteLogo />
         <p class="text-muted-foreground mt-6 text-sm leading-relaxed">
-          Strategy, Ecosystems und Venture Models für KI & Datenräume in Europa.
+          {t("hero_description")}
         </p>
       </div>
       <div class="flex flex-col gap-x-32 gap-y-10 sm:flex-row md:mt-4">
         <!-- Navigation -->
         <div class="flex flex-col gap-1">
-          <h3 class="mb-4 font-medium">Navigation</h3>
+          <h3 class="mb-4 font-medium">{t("footer_navigation")}</h3>
           {
             navigationLinks.map((link) => (
               <FooterLink href={link.href} newTab={link.newTab}>
@@ -72,7 +72,7 @@ const contactLinks: ComponentProps<typeof SocialIconSimple>[] = [
         </div>
 
         <div class="flex flex-col gap-1">
-          <h3 class="mb-4 font-medium">Rechtliches</h3>
+          <h3 class="mb-4 font-medium">{t("footer_legal")}</h3>
           {
             legalLinks.map((link) => (
               <FooterLink href={link.href} newTab={link.newTab}>
@@ -89,7 +89,7 @@ const contactLinks: ComponentProps<typeof SocialIconSimple>[] = [
       <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
         <p class="opacity-60">
           &copy; {today.getFullYear()}
-          {" "}{siteData.name}. Alle Rechte vorbehalten.
+          {" "}{siteData.name}. {t("footer_copyright")}
         </p>
         <!-- Contact Links -->
         <div class="mt-5 flex flex-wrap gap-8">

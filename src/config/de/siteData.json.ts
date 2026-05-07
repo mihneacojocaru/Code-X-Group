@@ -4,7 +4,7 @@ const siteData: SiteDataProps = {
   name: "Code-X Group",
   title: "Code-X Group – Turning Data Spaces into Business",
   description:
-    "Strategy, Ecosystems und Venture Models für KI & Datenräume in Europa. Code-X macht Datenräume wirtschaftlich.",
+    "Strategy, Ecosystems und Venture Modelle für KI & Datenräume in Europa. Code-X macht Datenräume wirtschaftlich.",
 
   author: {
     name: "Code-X Group",
