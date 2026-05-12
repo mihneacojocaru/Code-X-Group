@@ -4,10 +4,9 @@ import BlogLayout from "@/layouts/BlogLayoutSidebar.astro";
 
 // utils
 import { getAllPostSlugs, getPostBySlug } from "@/js/blogUtils";
-import { defaultLocale } from "@/config/siteSettings.json";
 
 export async function getStaticPaths() {
-  const slugs = await getAllPostSlugs(defaultLocale);
+  const slugs = await getAllPostSlugs("en");
   return slugs.map((slug) => ({ params: { slug } }));
 }
 

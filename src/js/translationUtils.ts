@@ -1,6 +1,7 @@
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { getCollection } from "astro:content";
 import type { DataEntryMap } from "astro:content";
+import { sanityClient } from "sanity:client";
 import {
   textTranslations,
   dataTranslations,
@@ -260,6 +261,22 @@ export async function generateRouteTranslations() {
   const entriesByMapping: Record<string, Record<string, string>> = {};
 
   let generatedMappingKeyCounter = 1;
+
+  // Sanity blog posts
+  const sanityPosts = await sanityClient.fetch<
+    { slug: string; language: string; mappingKey?: string }[]
+  >(`*[_type == "post" && draft != true] { "slug": slug.current, language, mappingKey }`);
+
+  sanityPosts.forEach((post) => {
+    const route = `blog/${post.slug}`;
+    if (post.mappingKey) {
+      if (!entriesByMapping[post.mappingKey]) entriesByMapping[post.mappingKey] = {};
+      entriesByMapping[post.mappingKey][post.language] = route;
+    } else {
+      const generatedKey = `generatedMappingKey_${generatedMappingKeyCounter++}`;
+      entriesByMapping[generatedKey] = { [post.language]: route };
+    }
+  });
 
   allContent.forEach((entry) => {
     // Extract locale and slug from the entry ID (assumed format: "locale/slug")

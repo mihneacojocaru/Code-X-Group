@@ -204,9 +204,5 @@ export const routeTranslations = {
  * You can use the locale value to map the collection to a different route if desired
  */
 export const localizedCollections = {
-  blog: {
-    de: "blog",
-    en: "blog",
-  },
-  // Add more collections/locales as needed
+  // Add more Astro content collections here as needed
 } as const;

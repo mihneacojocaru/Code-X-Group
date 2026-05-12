@@ -13,8 +13,8 @@ const root = join(__dirname, "..");
 const srcPages = join(root, "src/pages");
 const enPages = join(root, "src/pages/en");
 
-// These files in /en/ are maintained manually — do NOT overwrite them
-const UNIQUE_EN_PAGES = new Set(["impressum.astro", "404.astro"]);
+// These paths (relative to src/pages/) in /en/ are maintained manually — do NOT overwrite them
+const UNIQUE_EN_PAGES = new Set(["impressum.astro", "404.astro", "blog/[...slug].astro"]);
 
 // These root-level pages/folders are synced to /en/
 const SYNC_TARGETS = [
@@ -32,7 +32,7 @@ let synced = 0;
 
 for (const target of SYNC_TARGETS) {
   const filename = target.split("/").pop();
-  if (UNIQUE_EN_PAGES.has(filename)) continue;
+  if (UNIQUE_EN_PAGES.has(filename) || UNIQUE_EN_PAGES.has(target)) continue;
 
   const src = join(srcPages, target);
   const dest = join(enPages, target);
