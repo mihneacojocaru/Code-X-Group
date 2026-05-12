@@ -159,10 +159,6 @@
   @apply ps-4;
 }
 
-/* Table styling */
-.markdown-content table:not(:where(.not-content *)) {
-  @apply mb-4 overflow-auto;
-}
 .markdown-content :where(table):not(:where(.not-content *)) {
   @apply w-full table-auto border-spacing-0 text-sm;
 }

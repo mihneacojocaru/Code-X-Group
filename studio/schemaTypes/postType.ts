@@ -136,6 +136,9 @@ export const postType = defineType({
           },
         },
         {
+          type: "table",
+        },
+        {
           type: "image",
           options: { hotspot: true },
           fields: [
