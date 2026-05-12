@@ -1,51 +1,49 @@
 ---
 interface TableRow {
   _key: string;
-  cells: string[];
+  cells?: string[];
 }
 
 interface Props {
   node: {
-    caption?: string;
-    headerRow?: string[];
     rows?: TableRow[];
   };
 }
 
 const { node } = Astro.props;
-const { caption, headerRow, rows } = node;
+const rows = node.rows ?? [];
+const [headerRow, ...bodyRows] = rows;
 ---
 
-<div class="my-6 overflow-x-auto rounded-lg border border-border">
-  <table class="w-full text-sm">
-    {
-      caption && (
-        <caption class="text-muted-foreground mb-2 text-left text-sm">{caption}</caption>
-      )
-    }
-    {
-      headerRow && headerRow.length > 0 && (
-        <thead class="bg-muted">
-          <tr>
-            {headerRow.map((cell) => (
-              <th class="border-border px-4 py-3 text-left font-semibold border-b">{cell}</th>
-            ))}
-          </tr>
-        </thead>
-      )
-    }
-    {
-      rows && rows.length > 0 && (
-        <tbody>
-          {rows.map((row, rowIndex) => (
-            <tr class={rowIndex % 2 === 1 ? "bg-muted/40" : ""}>
-              {row.cells?.map((cell) => (
-                <td class="border-border px-4 py-3 border-b last:border-b-0">{cell}</td>
+{
+  rows.length > 0 && (
+    <div class="my-6 overflow-x-auto rounded-lg border border-border">
+      <table class="w-full text-sm">
+        {headerRow?.cells && headerRow.cells.length > 0 && (
+          <thead class="bg-muted">
+            <tr>
+              {headerRow.cells.map((cell) => (
+                <th class="border-border border-b px-4 py-3 text-left font-semibold">
+                  {cell}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      )
-    }
-  </table>
-</div>
+          </thead>
+        )}
+        {bodyRows.length > 0 && (
+          <tbody>
+            {bodyRows.map((row, rowIndex) => (
+              <tr class={rowIndex % 2 === 1 ? "bg-muted/40" : ""}>
+                {row.cells?.map((cell) => (
+                  <td class="border-border border-b px-4 py-3 last:border-b-0">
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        )}
+      </table>
+    </div>
+  )
+}

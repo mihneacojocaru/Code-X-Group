@@ -5,7 +5,7 @@ import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import AutoImport from "astro-auto-import";
 import react from "@astrojs/react";
-import netlify from "@astrojs/netlify";
+import vercel from "@astrojs/vercel";
 import icon from "astro-icon";
 import sanity from "@sanity/astro";
 
@@ -21,9 +21,7 @@ const SANITY_TOKEN = process.env.SANITY_TOKEN;
 export default defineConfig({
   site: "https://code-x.group",
   devToolbar: { enabled: false },
-  adapter: netlify({
-    imageCDN: false,
-  }),
+  adapter: vercel(),
   // i18n configuration must match src/config/translations.json.ts
   i18n: {
     defaultLocale: "de",
