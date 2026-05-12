@@ -1,3 +1,5 @@
+import type { ImageMetadata } from "astro";
+
 // site data types
 export interface SiteDataProps {
   name: string;
@@ -58,15 +60,6 @@ export interface TestimonialItem {
 }
 
 // --------------------------------------------------------
-// team data types
-export interface teamMember {
-  image: ImageMetadata; // an imported image
-  name: string;
-  title: string;
-  bio: string;
-}
-
-// --------------------------------------------------------
 // homepage data types
 export interface HomepageItem {
   title: string;
@@ -101,6 +94,27 @@ export interface HomepageData {
 
 // --------------------------------------------------------
 // about page data types
+export interface WhyPartnerStat {
+  value: number;
+  suffix: string;
+  label: string;
+  description: string;
+}
+
+export interface WhyPartnerData {
+  badge: string;
+  heading: string;
+  subheading: string;
+  stats: WhyPartnerStat[];
+  cards: HomepageItem[];
+}
+
+export interface ExpertiseCard {
+  image: ImageMetadata;
+  title: string;
+  items: string[];
+}
+
 export interface AboutData {
   heroBadge: string;
   heroHeading: string;
@@ -111,9 +125,11 @@ export interface AboutData {
   visionBadge: string;
   visionHeading: string;
   visionText: string;
+  whyPartner: WhyPartnerData;
   expertiseBadge: string;
   expertiseHeading: string;
-  expertise: (HomepageItem & { number: string })[];
+  expertiseSubheading: string;
+  expertise: ExpertiseCard[];
   servicesBadge: string;
   servicesHeading: string;
   services: HomepageItem[];

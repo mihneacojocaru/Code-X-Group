@@ -11,7 +11,6 @@ import siteDataEn from "./en/siteData.json";
 import navDataEn from "./en/navData.json";
 import faqDataEn from "./en/faqData.json";
 import testimonialDataEn from "./en/testimonialData.json";
-import teamDataEn from "./en/teamData.json";
 import homepageDataEn from "./en/homepageData.json";
 import aboutDataEn from "./en/aboutData.json";
 import contactDataEn from "./en/contactData.json";
@@ -19,7 +18,6 @@ import siteDataDe from "./de/siteData.json";
 import navDataDe from "./de/navData.json";
 import faqDataDe from "./de/faqData.json";
 import testimonialDataDe from "./de/testimonialData.json";
-import teamDataDe from "./de/teamData.json";
 import homepageDataDe from "./de/homepageData.json";
 import aboutDataDe from "./de/aboutData.json";
 import contactDataDe from "./de/contactData.json";
@@ -30,7 +28,6 @@ export const dataTranslations = {
     navData: navDataDe,
     faqData: faqDataDe,
     testimonialData: testimonialDataDe,
-    teamData: teamDataDe,
     homepageData: homepageDataDe,
     aboutData: aboutDataDe,
     contactData: contactDataDe,
@@ -40,7 +37,6 @@ export const dataTranslations = {
     navData: navDataEn,
     faqData: faqDataEn,
     testimonialData: testimonialDataEn,
-    teamData: teamDataEn,
     homepageData: homepageDataEn,
     aboutData: aboutDataEn,
     contactData: contactDataEn,

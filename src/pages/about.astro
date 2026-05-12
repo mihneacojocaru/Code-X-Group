@@ -2,8 +2,11 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import CtaCentered from "@/components/cta/CtaCentered.astro";
 import TiltCard from "@/components/feature/TiltCard.astro";
+import CountUpNumber from "@/components/stats/CountUpNumber.astro";
 import { getLocaleFromUrl } from "@/js/localeUtils";
 import { getTranslatedData } from "@/js/translationUtils";
+import { Image } from "astro:assets";
+import profileImage from "@images/Christoph-Herr-profile-image.jpeg";
 
 import Star from "@images/headers/star.svg";
 import Star2 from "@images/headers/star2.svg";
@@ -66,7 +69,67 @@ const ab = getTranslatedData("aboutData", currLocale);
     </div>
   </section>
 
-  <!-- Expertise -->
+  <!-- Why Partner -->
+  <section class="content-margin">
+    <div class="site-container">
+      <!-- Header: text left, profile image right -->
+      <div class="mb-16 grid grid-cols-1 gap-10 md:grid-cols-2 md:items-center md:gap-16 lg:mb-20">
+        <div class="order-2 md:order-1" data-mos="fade-right">
+          <span class="text-primary-accent mb-3 inline-block text-xl font-medium tracking-tighter">
+            {ab.whyPartner.badge}
+          </span>
+          <h2 class="h2 mb-6">{ab.whyPartner.heading}</h2>
+          <p class="text-muted-foreground text-lg leading-relaxed">{ab.whyPartner.subheading}</p>
+        </div>
+        <div class="order-1 md:order-2" data-mos="fade-left" data-mos-delay="0.1">
+          <Image
+            src={profileImage}
+            alt="Christoph Herr"
+            class="mx-auto w-full max-w-md rounded-2xl object-cover object-top shadow-lg md:aspect-3/4"
+            width={600}
+            height={800}
+          />
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="mb-16 grid gap-10 sm:grid-cols-3">
+        {
+          ab.whyPartner.stats.map((stat, i) => (
+            <div class="text-center" data-mos="fade-up" data-mos-delay={i * 0.15}>
+              <p class="mb-2">
+                <CountUpNumber
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  class="font-heading text-7xl font-bold tracking-tighter"
+                />
+              </p>
+              <h3 class="mb-1 text-xl font-semibold">{stat.label}</h3>
+              <p class="text-muted-foreground text-sm">{stat.description}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Cards -->
+      <div class="grid gap-6 md:grid-cols-3">
+        {
+          ab.whyPartner.cards.map((card, i) => (
+            <div
+              class="bg-base-100/30 dark:bg-base-900/50 rounded-3xl border border-white/10 p-8"
+              data-mos="fade-up"
+              data-mos-delay={i * 0.1}
+            >
+              <h3 class="mb-3 text-xl font-semibold">{card.title}</h3>
+              <p class="text-muted-foreground text-sm leading-relaxed">{card.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise / Leistungen -->
   <section class="content-margin">
     <div class="site-container">
       <div class="mb-12 max-w-2xl" data-mos="fade-up">
@@ -74,16 +137,36 @@ const ab = getTranslatedData("aboutData", currLocale);
           {ab.expertiseBadge}
         </span>
         <h2 class="h2 mb-4">{ab.expertiseHeading}</h2>
+        <p class="text-muted-foreground text-lg">{ab.expertiseSubheading}</p>
       </div>
-      <div class="grid gap-8 md:grid-cols-3">
+      <div class="divide-y divide-white/10">
         {
           ab.expertise.map((item, i) => (
-            <div data-mos="fade-up" data-mos-delay={`${i * 0.15}`}>
-              <span class="text-primary-accent mb-4 block text-5xl font-bold opacity-30">
-                {item.number}
-              </span>
-              <h3 class="mb-3 text-2xl font-semibold">{item.title}</h3>
-              <p class="text-muted-foreground">{item.description}</p>
+            <div
+              class="grid grid-cols-1 gap-10 py-8 md:grid-cols-2 md:gap-16 md:py-20 justify-items-center items-center"
+              data-mos="fade-up"
+              data-mos-delay={i * 0.1}
+            >
+              <div class:list={["order-1 md:max-w-xl", { "md:order-last": i % 2 !== 0 }]}>
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  class="w-full rounded-2xl object-cover aspect-4/3"
+                  width={700}
+                  height={525}
+                />
+              </div>
+              <div class="order-2 max-w-xl h-fit">
+                <h3 class="mb-6 text-2xl font-semibold md:text-3xl">{item.title}</h3>
+                <ul class="space-y-4">
+                  {item.items.map((bullet) => (
+                    <li class="text-muted-foreground flex items-start gap-3">
+                      <span class="text-primary-accent mt-0.5 flex-shrink-0 font-bold">•</span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           ))
         }
@@ -129,11 +212,11 @@ const ab = getTranslatedData("aboutData", currLocale);
         </span>
         <h2 class="h2 mb-4">{ab.referencesHeading}</h2>
       </div>
-      <div class="-m-4 flex flex-wrap">
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-6">
         {
           ab.references.map((item, i) => (
             <div
-              class="w-full p-4 md:w-1/2"
+              class:list={[i < 3 ? "md:col-span-2" : "md:col-span-3"]}
               data-mos="fade-up"
               data-mos-delay={i * 0.1}
             >

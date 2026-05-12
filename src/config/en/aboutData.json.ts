@@ -1,4 +1,8 @@
 import { type AboutData } from "../types/configDataTypes";
+import strategyImage from "@images/strategy.jpg";
+import industrialImage from "@images/industrial.jpg";
+import dataSpacesImage from "@images/data-spaces.jpg";
+import coworkingImage from "@images/coworking.jpg";
 
 const aboutData: AboutData = {
   heroBadge: "Code-X Group",
@@ -16,26 +20,94 @@ const aboutData: AboutData = {
   visionText:
     "Code-X becomes the leading European force in data space strategy, AI-driven ecosystems, and platform and investment models — with a clear focus on market impact and scalability.",
 
-  expertiseBadge: "Expertise",
-  expertiseHeading: "Our Expertise",
+  whyPartner: {
+    badge: "Christoph Herr",
+    heading: "Why I'm the Right Partner",
+    subheading:
+      "A unique combination of operational experience, strategic expertise, and European networks — rarely found at this depth.",
+    stats: [
+      {
+        value: 20,
+        suffix: "+",
+        label: "Years of Experience",
+        description: "In technology, industry, and innovation",
+      },
+      {
+        value: 80,
+        suffix: "+",
+        label: "Startup Projects",
+        description: "Scouting, evaluation, and strategic guidance",
+      },
+      {
+        value: 3,
+        suffix: "",
+        label: "Core Competencies",
+        description: "AI, data economy & industrial transformation",
+      },
+    ],
+    cards: [
+      {
+        title: "Unique Combination",
+        description:
+          "AI, data economy, industry, and venture — rarely found in a single person.",
+      },
+      {
+        title: "European Initiatives",
+        description:
+          "Active co-shaping of Manufacturing-X, GAIA-X, and EHDS / sphin-X firsthand.",
+      },
+      {
+        title: "Strong Network",
+        description:
+          "Connected with industry, startups, research, and the public sector across Europe.",
+      },
+    ],
+  },
+
+  expertiseBadge: "Strategy",
+  expertiseHeading: "Services",
+  expertiseSubheading:
+    "Four strategic focus areas — tailored for industrial decision-makers, technology providers, and public institutions.",
   expertise: [
     {
-      number: "01",
-      title: "Data Space Expertise",
-      description:
-        "Deep experience in designing and scaling European data space initiatives: Manufacturing-X, Factory-X, sphinX, EHDS, and more.",
+      image: strategyImage,
+      title: "AI & Data Ecosystem Strategy",
+      items: [
+        "Developing AI and data strategies",
+        "Integrating AI into industrial environments",
+        "Designing data ecosystems and architectures",
+        "Aligning with European initiatives and regulations (EHDS, EU Data Act, Data Governance Act, …)",
+      ],
     },
     {
-      number: "02",
-      title: "Business Models",
-      description:
-        "Strategic guidance in building data-driven, scalable business models — from concept to market.",
+      image: industrialImage,
+      title: "Industrial AI & Data Ecosystems",
+      items: [
+        "Strategy for data-driven ecosystems",
+        "Defining AI use cases in industrial contexts",
+        "Scaling AI solutions in enterprise environments",
+        "Integrating machine and production data",
+      ],
     },
     {
-      number: "03",
-      title: "Financing & Investment",
-      description:
-        "Access to venture capital and familiarity with EU innovation programs, funding structures, and regulatory frameworks.",
+      image: dataSpacesImage,
+      title: "Data Economy & Data Spaces",
+      items: [
+        "sphin-X, Manufacturing-X, Factory-X, Scale-MX, GAIA-X, …",
+        "Data governance and interoperability",
+        "Designing data exchange models",
+        "Developing data-driven business models",
+      ],
+    },
+    {
+      image: coworkingImage,
+      title: "Venture, M&A & Innovation",
+      items: [
+        "Startup scouting and evaluation",
+        "Technology assessment (AI / Deep Tech)",
+        "Build-vs.-buy decisions",
+        "Strategic partnerships and ecosystem development",
+      ],
     },
   ],
 
@@ -69,22 +141,28 @@ const aboutData: AboutData = {
   referencesHeading: "Selected Engagements",
   references: [
     {
-      title: "Industry Associations",
+      title: "VDMA Fachverband Software und Digitalisierung",
       description:
-        "Reorientation of data space strategy for leading European industry associations.",
+        "Expert in platform economics and business software, Working Group CDO & CIO, Task Force Manufacturing-X",
     },
     {
-      title: "European Organizations",
-      description: "Definition of the \"second wave\" of data spaces with a clear market focus.",
-    },
-    {
-      title: "Health Ecosystem",
+      title: "KION Group AG",
       description:
-        "Positioning in the European Health Data Space (EHDS) — role model and strategy.",
+        "Digital Business, Corporate Venture Capital — innovative digital products for intralogistics",
     },
     {
-      title: "Technology Providers",
-      description: "Building new data-driven platforms with differentiated market strategy.",
+      title: "Startup & Venture Capital Industry",
+      description:
+        ">10 years as GmbH Managing Director / AG Board Member; innovative IT products with disruption potential; Investment Manager for venture capital investments",
+    },
+    {
+      title: "Deutsche Forschungsgemeinschaft (DFG)",
+      description:
+        "Engineering Sciences Group (DFG Ideas Workshop) — innovative products and services from DFG-funded research",
+    },
+    {
+      title: "Deutsche Telekom AG",
+      description: "Headquarters, Board Division Technology & Services",
     },
   ],
 };

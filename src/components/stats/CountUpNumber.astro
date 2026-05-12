@@ -1,0 +1,57 @@
+---
+interface Props {
+  value: number;
+  suffix?: string;
+  duration?: number;
+  class?: string;
+}
+
+const { value, suffix = "", duration = 2500, class: className = "" } = Astro.props;
+---
+
+<span
+  class={className}
+  data-countup
+  data-countup-value={value}
+  data-countup-suffix={suffix}
+  data-countup-duration={duration}
+>{value}{suffix}</span>
+
+<script>
+  function initCountUp() {
+    const elements = document.querySelectorAll<HTMLElement>("[data-countup]:not([data-counted])");
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          if (el.dataset.counted) return;
+          el.dataset.counted = "true";
+
+          const target = parseInt(el.dataset.countupValue ?? "0", 10);
+          const suffix = el.dataset.countupSuffix ?? "";
+          const duration = parseInt(el.dataset.countupDuration ?? "2000", 10);
+          const startTime = performance.now();
+
+          const tick = (now: number) => {
+            const progress = Math.min((now - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 4);
+            el.textContent = Math.floor(eased * target) + suffix;
+            if (progress < 1) requestAnimationFrame(tick);
+          };
+
+          requestAnimationFrame(tick);
+          observer.unobserve(el);
+        });
+      },
+      { threshold: 0.5 },
+    );
+
+    elements.forEach((el) => observer.observe(el));
+  }
+
+  initCountUp();
+  document.addEventListener("astro:page-load", initCountUp);
+</script>
