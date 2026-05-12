@@ -1,5 +1,4 @@
 ---
-import { type CollectionEntry } from "astro:content";
 import { getLocalizedRoute } from "@/js/translationUtils";
 import { Icon } from "astro-icon/components";
 
@@ -10,8 +9,18 @@ import BaseLayout from "./BaseLayout.astro";
 import { getLocaleFromUrl } from "@/js/localeUtils";
 import { formatDate } from "@/js/textUtils";
 
+interface CareerData {
+  title: string;
+  location: string;
+  type: string;
+  description: string;
+  requirements: string[];
+  applicationUrl: string;
+  publishDate: Date;
+}
+
 interface Props {
-  career: CollectionEntry<"careers">;
+  career: { data: CareerData };
 }
 
 const { career } = Astro.props;

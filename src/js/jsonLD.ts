@@ -1,4 +1,4 @@
-import { type CollectionEntry } from "astro:content";
+import type { SanityPost, SanityAuthor } from "@/types/sanity";
 
 // utils
 import { getTranslatedData } from "@/js/translationUtils";
@@ -19,9 +19,8 @@ type JsonLdAuthor = {
 
 export interface BlogProps {
   type: "blog";
-  postFrontmatter: CollectionEntry<"blog">["data"];
-  image: { src: string }; // result of getImage() from Seo.astro or site config default
-  authors: CollectionEntry<"authors">[];
+  post: SanityPost;
+  image: { src: string };
   canonicalUrl: URL;
 }
 
@@ -30,22 +29,15 @@ export type JsonLDProps = BlogProps | GeneralProps;
 export default function jsonLDGenerator(props: JsonLDProps) {
   const { type } = props;
   if (type === "blog") {
-    const { postFrontmatter, image, authors, canonicalUrl } = props as BlogProps;
+    const { post, image, canonicalUrl } = props as BlogProps;
 
-    const authorsJsonLdArray: JsonLdAuthor[] = authors.map((author) => {
-      return {
+    let authorsJsonLd: JsonLdAuthor | JsonLdAuthor[] | undefined;
+    if (post.author) {
+      authorsJsonLd = {
         "@type": "Person",
-        name: author.data.name,
-        url: author.data.authorLink,
+        name: post.author.name,
+        url: post.author.authorLink ?? "",
       };
-    });
-
-    let authorsJsonLd: JsonLdAuthor | JsonLdAuthor[];
-
-    if (authorsJsonLdArray.length === 1) {
-      authorsJsonLd = authorsJsonLdArray[0];
-    } else {
-      authorsJsonLd = authorsJsonLdArray;
     }
 
     return `<script type="application/ld+json">
@@ -56,12 +48,12 @@ export default function jsonLDGenerator(props: JsonLDProps) {
           "@type": "WebPage",
           "@id": "${canonicalUrl}"
         },
-        "headline": "${postFrontmatter.title}",
-        "description": "${postFrontmatter.description}",
+        "headline": "${post.title.replace(/"/g, '\\"')}",
+        "description": "${post.description.replace(/"/g, '\\"')}",
         "image": "${image.src}",
-        "author": ${JSON.stringify(authorsJsonLd)},
-        "datePublished": "${postFrontmatter.pubDate}",
-        "dateModified": "${postFrontmatter.updatedDate}"
+        ${authorsJsonLd ? `"author": ${JSON.stringify(authorsJsonLd)},` : ""}
+        "datePublished": "${post.publishedAt}",
+        "dateModified": "${post.updatedAt ?? post.publishedAt}"
       }
     </script>`;
   }

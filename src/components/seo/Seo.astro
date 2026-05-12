@@ -1,7 +1,7 @@
 ---
-import { getImage } from "astro:assets";
-import { type CollectionEntry } from "astro:content";
 import { SEO } from "astro-seo";
+import type { SanityPost } from "@/types/sanity";
+import { urlFor } from "@/lib/sanity";
 
 // utils
 import { getLocaleFromUrl } from "@/js/localeUtils";
@@ -26,60 +26,52 @@ interface GenProps extends BaseProps {
   image?: ImageMetadata;
 }
 
-interface BlogProps extends BaseProps {
+interface BlogSeoProps extends BaseProps {
   type: "blog";
-  image: ImageMetadata;
-  authors: CollectionEntry<"authors">[];
-  postFrontmatter: CollectionEntry<"blog">["data"];
+  post: SanityPost;
 }
 
-const { type, title, description, image, noindex = false } = Astro.props as GenProps | BlogProps;
+const { type, title, description, noindex = false } = Astro.props as GenProps | BlogSeoProps;
 
-let optimizedImage: Awaited<ReturnType<typeof getImage>> | undefined;
+let imageUrl: string;
 let jsonLD: string;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
-if (image) {
-  optimizedImage = await getImage({
-    src: image,
-    format: "webp",
-    quality: "high",
-    width: 1200,
-  });
-}
-
-// if this is a blog page we do things differently
 if (type === "blog") {
-  const { authors, postFrontmatter } = Astro.props as BlogProps;
+  const { post } = Astro.props as BlogSeoProps;
 
-  const jsonldImage = image && optimizedImage ? optimizedImage : siteData.defaultImage;
+  // Use Sanity CDN image URL for OG image
+  const ogImage = post.heroImage
+    ? urlFor(post.heroImage).width(1200).height(630).auto("format").url()
+    : null;
+
+  imageUrl =
+    ogImage ??
+    (siteData.defaultImage?.src
+      ? (import.meta.env.SITE?.replace(/\/$/, "") ?? "") + siteData.defaultImage.src
+      : "");
 
   jsonLD = jsonLDGenerator({
     type: "blog",
-    postFrontmatter: postFrontmatter,
-    image: jsonldImage,
-    authors: authors,
-    canonicalUrl: canonicalUrl,
+    post,
+    image: { src: imageUrl },
+    canonicalUrl,
   });
-}
-// for general pages
-else {
-  jsonLD = jsonLDGenerator({
-    type: "general",
-  });
+} else {
+  const { image } = Astro.props as GenProps;
+
+  imageUrl = image
+    ? (import.meta.env.SITE?.replace(/\/$/, "") ?? "") + image.src
+    : (siteData.defaultImage?.src
+        ? (import.meta.env.SITE?.replace(/\/$/, "") ?? "") + siteData.defaultImage.src
+        : "");
+
+  jsonLD = jsonLDGenerator({ type: "general" });
 }
 
 function trimEndSlash(str: string) {
-  if (str[str.length - 1] === "/") {
-    return str.slice(0, -1);
-  } else {
-    return str;
-  }
+  return str.endsWith("/") ? str.slice(0, -1) : str;
 }
-
-// put together the image URL
-const imageUrl =
-  trimEndSlash(Astro.site?.toString() || "") + (optimizedImage?.src || siteData.defaultImage.src);
 ---
 
 <SEO
@@ -99,8 +91,8 @@ const imageUrl =
     },
     image: {
       type: "image/webp",
-      width: optimizedImage?.attributes.width || "1200",
-      height: optimizedImage?.attributes.height || "800",
+      width: 1200,
+      height: 630,
       alt: title,
     },
   }}

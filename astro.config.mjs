@@ -5,9 +5,17 @@ import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import AutoImport from "astro-auto-import";
 import react from "@astrojs/react";
-import keystatic from "@keystatic/astro";
 import netlify from "@astrojs/netlify";
 import icon from "astro-icon";
+import sanity from "@sanity/astro";
+
+// Load .env file (Node.js 22+ built-in, no vite import needed)
+try { process.loadEnvFile(); } catch {}
+
+const SANITY_PROJECT_ID = process.env.SANITY_PROJECT_ID ?? "urhrskjs";
+const SANITY_DATASET = process.env.SANITY_DATASET ?? "production";
+const SANITY_API_VERSION = process.env.SANITY_API_VERSION ?? "2024-01-01";
+const SANITY_TOKEN = process.env.SANITY_TOKEN;
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,9 +24,6 @@ export default defineConfig({
   adapter: netlify({
     imageCDN: false,
   }),
-  redirects: {
-    "/admin": "/keystatic",
-  },
   // i18n configuration must match src/config/translations.json.ts
   i18n: {
     defaultLocale: "de",
@@ -45,7 +50,13 @@ export default defineConfig({
     mdx(),
     react(),
     icon(),
-    keystatic(),
+    sanity({
+      projectId: SANITY_PROJECT_ID,
+      dataset: SANITY_DATASET,
+      useCdn: false,
+      apiVersion: SANITY_API_VERSION,
+      token: SANITY_TOKEN,
+    }),
     sitemap(),
   ],
 

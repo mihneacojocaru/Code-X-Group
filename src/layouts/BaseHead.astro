@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry } from "astro:content";
+import type { SanityPost } from "@/types/sanity";
 import { ClientRouter } from "astro:transitions";
 
 // component imports
@@ -13,8 +13,7 @@ export interface Props {
   title: string;
   description: string;
   image?: ImageMetadata;
-  postFrontmatter?: CollectionEntry<"blog">["data"];
-  authors?: CollectionEntry<"authors">[];
+  post?: SanityPost;
   noindex?: boolean;
 }
 
@@ -23,8 +22,7 @@ const {
   title,
   description,
   image,
-  authors,
-  postFrontmatter,
+  post,
   noindex = false,
 } = Astro.props as Props;
 ---
@@ -57,17 +55,7 @@ const {
       // set dark theme initially
       document.documentElement.classList.add("dark");
       localStorage.setItem("colorTheme", "dark");
-
-      // if no color theme yet, use the users preferences (uncomment the below code, and comment out the above code to use this instead)
-      // if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      // 	document.documentElement.classList.add("dark");
-      // 	localStorage.setItem("colorTheme", "dark");
-      // } else {
-      // 	document.documentElement.classList.remove("dark");
-      // 	localStorage.setItem("colorTheme", "light");
-      // }
     } else {
-      // If there is, assign the theme based on the value in local storage
       if (colorTheme === "dark") {
         document.documentElement.classList.add("dark");
       } else if (colorTheme === "light") {
@@ -83,15 +71,25 @@ const {
   document.addEventListener("astro:after-swap", initTheme);
 </script>
 
-<Seo
-  type={type}
-  title={title}
-  description={description}
-  image={image}
-  authors={authors}
-  postFrontmatter={postFrontmatter}
-  noindex={noindex}
-/>
+{
+  type === "blog" && post ? (
+    <Seo
+      type="blog"
+      title={title}
+      description={description}
+      post={post}
+      noindex={noindex}
+    />
+  ) : (
+    <Seo
+      type="general"
+      title={title}
+      description={description}
+      image={image}
+      noindex={noindex}
+    />
+  )
+}
 
 <!-- no fallback as I saw issues with firefox fallback -->
 {siteSettings.useViewTransitions && <ClientRouter fallback="none" />}

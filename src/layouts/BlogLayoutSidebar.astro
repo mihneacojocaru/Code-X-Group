@@ -1,7 +1,6 @@
 ---
-import { type CollectionEntry, getEntries } from "astro:content";
-import { Image } from "astro:assets";
-import { getLocalizedRoute } from "@/js/translationUtils";
+import type { SanityPost } from "@/types/sanity";
+import { PortableText } from "astro-portabletext";
 
 // main layout
 import BaseLayout from "./BaseLayout.astro";
@@ -15,43 +14,43 @@ import TableOfContents from "@/components/table-of-contents/TableOfContents.astr
 // utils
 import { formatDate } from "@/js/textUtils";
 import { getLocaleFromUrl } from "@/js/localeUtils";
-import { useTranslations } from "@/js/translationUtils";
+import { getLocalizedRoute, useTranslations } from "@/js/translationUtils";
+import { urlFor } from "@/lib/sanity";
+import { extractHeadingsFromBody } from "@/js/blogUtils";
 
 interface Props {
-  post: CollectionEntry<"blog">;
-  headings?: import("astro").MarkdownHeading[];
+  post: SanityPost;
 }
 
-const { post, headings } = Astro.props as Props;
-const { title, description, authors, pubDate, categories, updatedDate, heroImage } = post.data;
+const { post } = Astro.props;
+const { title, description, author, publishedAt, updatedAt, categories, heroImage, body } = post;
 
 const currLocale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(currLocale);
-const authorsData = await getEntries(authors);
+
+const pubDate = new Date(publishedAt);
+const updDate = updatedAt ? new Date(updatedAt) : undefined;
+
+const heroImageUrl = heroImage ? urlFor(heroImage).width(1200).auto("format").url() : null;
+const authorAvatarUrl = author?.avatar ? urlFor(author.avatar).width(100).auto("format").url() : null;
+
+const headings = extractHeadingsFromBody(body);
 ---
 
-<BaseLayout
-  type="blog"
-  title={title}
-  description={description}
-  heroImage={heroImage}
-  authorsData={authorsData}
-  postFrontmatter={post.data}
->
+<BaseLayout type="blog" title={title} description={description} post={post}>
   <article class="site-container" aria-labelledby="article-title">
     <!-- Hero Section with Featured Image -->
     <div class="relative mx-auto max-w-6xl pt-10">
       <!-- Featured Image (if provided) -->
       {
-        heroImage && (
+        heroImageUrl && (
           <div class="mb-10 overflow-hidden rounded-3xl">
-            <Image
-              src={heroImage}
-              alt={`article: ${title}`}
+            <img
+              src={heroImageUrl}
+              alt={heroImage?.alt ?? `article: ${title}`}
               loading="eager"
               class="h-auto w-full object-cover"
               width={1200}
-              densities={[1.5, 2]}
             />
           </div>
         )
@@ -75,38 +74,51 @@ const authorsData = await getEntries(authors);
       <div class="mb-10 flex items-center justify-between border-b pb-6">
         <div class="flex items-center gap-4">
           {
-            authorsData.map((author) => (
+            author && (
               <a
-                href={author.data.authorLink}
+                href={author.authorLink ?? "#"}
                 class="group flex items-center gap-3"
-                aria-label={`Author: ${author.data.name}`}
+                aria-label={`Author: ${author.name}`}
               >
-                <div class="size-12 overflow-hidden rounded-full border">
-                  <Image
-                    src={author.data.avatar}
-                    alt={author.data.name}
-                    width={100}
-                    class="h-full w-full object-cover"
-                  />
-                </div>
+                {authorAvatarUrl ? (
+                  <div class="size-12 overflow-hidden rounded-full border">
+                    <img
+                      src={authorAvatarUrl}
+                      alt={author.name}
+                      width={100}
+                      class="h-full w-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div class="size-12 overflow-hidden rounded-full border bg-muted flex items-center justify-center">
+                    <span class="text-lg font-medium">{author.name.charAt(0)}</span>
+                  </div>
+                )}
                 <div>
                   <span class="group-hover:text-primary-accent block font-medium transition-colors">
-                    {author.data.name}
+                    {author.name}
                   </span>
                   <div class="text-muted-foreground flex items-center gap-2 text-sm">
                     <time datetime={pubDate.toISOString()}>{formatDate(pubDate, currLocale)}</time>
-                    {updatedDate && (
+                    {updDate && (
                       <>
                         <span>•</span>
                         <span>
-                          {t("updated")}: {formatDate(updatedDate, currLocale)}
+                          {t("updated")}: {formatDate(updDate, currLocale)}
                         </span>
                       </>
                     )}
                   </div>
                 </div>
               </a>
-            ))
+            )
+          }
+          {
+            !author && (
+              <div class="text-muted-foreground text-sm">
+                <time datetime={pubDate.toISOString()}>{formatDate(pubDate, currLocale)}</time>
+              </div>
+            )
           }
         </div>
       </div>
@@ -120,19 +132,19 @@ const authorsData = await getEntries(authors);
       <aside class="">
         <div class="sticky top-24">
           <h2 class="mb-6 text-lg font-medium">{t("table_of_contents")}</h2>
-
-          {headings && <TableOfContents headings={headings} />}
+          {headings.length > 0 && <TableOfContents headings={headings} />}
         </div>
       </aside>
 
       <!-- Main Content -->
       <div class="">
         <div class="markdown-content">
-          <slot />
+          {body && <PortableText value={body} />}
         </div>
 
         <!-- After Content Section -->
         <div class="mt-16 flex flex-wrap items-center justify-between gap-4 border-t pt-8">
+
           <!-- Share Links -->
           <div class="flex items-center gap-3">
             <span class="text-muted-foreground text-sm">{t("share_this_article")}:</span>
@@ -147,3 +159,32 @@ const authorsData = await getEntries(authors);
     </div>
   </article>
 </BaseLayout>
+
+<script>
+  // Add id attributes to headings inside .markdown-content so the TOC links work.
+  // Mirrors the server-side slugify logic.
+  function slugify(text: string): string {
+    return text
+      .toString()
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^\w-]+/g, "")
+      .replace(/--+/g, "-")
+      .replace(/^-+/, "")
+      .replace(/-+$/, "");
+  }
+
+  function addHeadingIds() {
+    const headings = document.querySelectorAll(
+      ".markdown-content h2, .markdown-content h3, .markdown-content h4, .markdown-content h5, .markdown-content h6",
+    );
+    headings.forEach((heading) => {
+      if (!heading.id) {
+        heading.id = slugify(heading.textContent ?? "");
+      }
+    });
+  }
+
+  addHeadingIds();
+  document.addEventListener("astro:after-swap", addHeadingIds);
+</script>
