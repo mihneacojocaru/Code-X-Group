@@ -1,6 +1,6 @@
-# Welcome to Zenith!
+# Code-X Group Website
 
-This is a financial-themed SaaS template for Astro styled with Tailwind CSS v4. You'll also find a number of Starwind UI components in use which are accessible and extendable.
+This is an Astro website styled with Tailwind CSS v4, using Sanity CMS for blog content. It includes Starwind UI components which are accessible and extendable.
 
 ## Quickstart
 

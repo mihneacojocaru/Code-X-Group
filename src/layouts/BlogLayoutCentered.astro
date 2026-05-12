@@ -2,6 +2,7 @@
 import type { SanityPost } from "@/types/sanity";
 import { PortableText } from "astro-portabletext";
 import SanityTable from "@/components/markdown-components/SanityTable.astro";
+import SanityImage from "@/components/markdown-components/SanityImage.astro";
 import { getLocalizedRoute } from "@/js/translationUtils";
 
 // main layout
@@ -110,7 +111,7 @@ const authorAvatarUrl = author?.avatar ? urlFor(author.avatar).width(100).auto("
     <!-- Content Section -->
     <div class="mx-auto max-w-3xl pb-16">
       <div class="markdown-content">
-        {body && <PortableText value={body} components={{ type: { table: SanityTable } }} />}
+        {body && <PortableText value={body} components={{ type: { table: SanityTable, image: SanityImage } }} />}
       </div>
 
       <!-- After Content Section -->

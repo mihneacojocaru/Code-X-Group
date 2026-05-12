@@ -2,6 +2,7 @@
 import type { SanityPost } from "@/types/sanity";
 import { PortableText } from "astro-portabletext";
 import SanityTable from "@/components/markdown-components/SanityTable.astro";
+import SanityImage from "@/components/markdown-components/SanityImage.astro";
 
 // main layout
 import BaseLayout from "./BaseLayout.astro";
@@ -140,7 +141,7 @@ const headings = extractHeadingsFromBody(body);
       <!-- Main Content -->
       <div class="">
         <div class="markdown-content">
-          {body && <PortableText value={body} components={{ type: { table: SanityTable } }} />}
+          {body && <PortableText value={body} components={{ type: { table: SanityTable, image: SanityImage } }} />}
         </div>
 
         <!-- After Content Section -->
