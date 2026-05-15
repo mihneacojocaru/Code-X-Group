@@ -11,8 +11,10 @@ import PostCardLarge from "@/components/post-card/PostCardLarge.astro";
 // utils
 import { getAllPostsForLocale } from "@/js/blogUtils";
 import { getLocaleFromUrl } from "@/js/localeUtils";
+import { useTranslations } from "@/js/translationUtils";
 
 const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
 const posts = await getAllPostsForLocale(currLocale);
 ---
 
@@ -51,7 +53,7 @@ const posts = await getAllPostsForLocale(currLocale);
       {
         posts.length > 5 && (
           <Button id="see-more-button" class="mx-auto">
-            See more articles
+            {t("press_see_more")}
           </Button>
         )
       }

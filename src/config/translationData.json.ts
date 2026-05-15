@@ -79,6 +79,7 @@ export const textTranslations = {
     press_podcasts: "Podcasts",
     press_articles: "Artikel",
     press_coming_soon: "Bald verfügbar.",
+    press_see_more: "Weitere Artikel anzeigen",
 
     // blog
     back_to_all_posts: "Zurück zur Übersicht",
@@ -135,6 +136,7 @@ export const textTranslations = {
     press_podcasts: "Podcasts",
     press_articles: "Articles",
     press_coming_soon: "Coming soon.",
+    press_see_more: "See more articles",
 
     // blog
     back_to_all_posts: "Back to all posts",
