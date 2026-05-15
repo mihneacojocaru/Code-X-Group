@@ -5,7 +5,8 @@ import TiltCard from "@/components/feature/TiltCard.astro";
 import CountUpNumber from "@/components/stats/CountUpNumber.astro";
 import { getLocaleFromUrl } from "@/js/localeUtils";
 import { getTranslatedData } from "@/js/translationUtils";
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
+import "photoswipe/dist/photoswipe.css";
 import profileImage from "@images/Christoph-Herr-profile-image.jpeg";
 
 import Star from "@images/headers/star.svg";
@@ -16,6 +17,10 @@ import Lines from "@images/headers/lines.svg";
 const currLocale = getLocaleFromUrl(Astro.url);
 const siteData = getTranslatedData("siteData", currLocale);
 const ab = getTranslatedData("aboutData", currLocale);
+
+const lightboxImages = await Promise.all(
+  ab.expertise.map((item) => getImage({ src: item.image })),
+);
 ---
 
 <BaseLayout
@@ -130,7 +135,7 @@ const ab = getTranslatedData("aboutData", currLocale);
   </section>
 
   <!-- Expertise / Leistungen -->
-  <section class="content-margin">
+  <section id="expertise" class="content-margin scroll-mt-24">
     <div class="site-container">
       <div class="mb-12 max-w-2xl" data-mos="fade-up">
         <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
@@ -139,7 +144,7 @@ const ab = getTranslatedData("aboutData", currLocale);
         <h2 class="h2 mb-4">{ab.expertiseHeading}</h2>
         <p class="text-muted-foreground text-lg">{ab.expertiseSubheading}</p>
       </div>
-      <div class="divide-y divide-white/10">
+      <div id="expertise-gallery" class="divide-y divide-white/10">
         {
           ab.expertise.map((item, i) => (
             <div
@@ -148,13 +153,19 @@ const ab = getTranslatedData("aboutData", currLocale);
               data-mos-delay={i * 0.1}
             >
               <div class:list={["order-1 md:max-w-xl", { "md:order-last": i % 2 !== 0 }]}>
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  class="w-full rounded-2xl object-cover aspect-4/3"
-                  width={700}
-                  height={525}
-                />
+                <a
+                  href={lightboxImages[i].src}
+                  data-pswp-width={item.image.width}
+                  data-pswp-height={item.image.height}
+                  class="block cursor-zoom-in"
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    class="w-full rounded-2xl transition-opacity hover:opacity-90"
+                    width={700}
+                  />
+                </a>
               </div>
               <div class="order-2 max-w-xl h-fit">
                 <h3 class="mb-6 text-2xl font-semibold md:text-3xl">{item.title}</h3>
@@ -230,3 +241,15 @@ const ab = getTranslatedData("aboutData", currLocale);
 
   <CtaCentered />
 </BaseLayout>
+
+<script>
+  import PhotoSwipeLightbox from "photoswipe/lightbox";
+
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: "#expertise-gallery",
+    children: "a[data-pswp-width]",
+    pswpModule: () => import("photoswipe"),
+    showHideAnimationType: "fade",
+  });
+  lightbox.init();
+</script>

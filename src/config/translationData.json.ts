@@ -73,6 +73,13 @@ export const textTranslations = {
     cta_text: "Wenn Sie an Datenräumen, KI oder Plattform-Ökosystemen arbeiten und echten Markterfolg erzielen möchten – sprechen wir.",
     cta_button: "Kontakt aufnehmen",
 
+    // press
+    press_heading: "Presse & Medien",
+    press_description: "Interviews, Podcasts und Artikel rund um KI, Datenräume und Plattform-Ökosysteme.",
+    press_podcasts: "Podcasts",
+    press_articles: "Artikel",
+    press_coming_soon: "Bald verfügbar.",
+
     // blog
     back_to_all_posts: "Zurück zur Übersicht",
     updated: "Aktualisiert",
@@ -121,6 +128,13 @@ export const textTranslations = {
     cta_heading: "Let's talk.",
     cta_text: "If you work on data spaces, AI, or platform ecosystems and want to achieve real market success — let's talk.",
     cta_button: "Get in touch",
+
+    // press
+    press_heading: "Press & Media",
+    press_description: "Interviews, podcasts and articles on AI, data spaces and platform ecosystems.",
+    press_podcasts: "Podcasts",
+    press_articles: "Articles",
+    press_coming_soon: "Coming soon.",
 
     // blog
     back_to_all_posts: "Back to all posts",

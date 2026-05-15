@@ -10,6 +10,14 @@ const navConfig: navItem[] = [
     link: "/about",
   },
   {
+    text: "Angebot",
+    link: "/about#expertise",
+  },
+  {
+    text: "Presse & Medien",
+    link: "/press",
+  },
+  {
     text: "Blog",
     link: "/blog/",
   },

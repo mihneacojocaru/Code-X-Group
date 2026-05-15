@@ -1,0 +1,107 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CtaCentered from "@/components/cta/CtaCentered.astro";
+import { getAllPressItems } from "@/js/pressUtils";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { useTranslations } from "@/js/translationUtils";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+const items = await getAllPressItems();
+const podcasts = items.filter((i) => i.category === "podcast");
+const articles = items.filter((i) => i.category === "article");
+---
+
+<BaseLayout
+  title={`${t("press_heading")} – Code-X Group`}
+  description={t("press_description")}
+>
+  <!-- Hero -->
+  <section class="-mt-23 relative overflow-hidden pt-23">
+    <div class="pt-20 pb-16">
+      <div class="site-container relative text-center">
+        <div data-mos="fade-up">
+          <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
+            Code-X Group
+          </span>
+          <h1 class="h1 mb-6">{t("press_heading")}</h1>
+          <p class="text-muted-foreground mx-auto max-w-2xl text-lg">
+            {t("press_description")}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="site-container">
+    <!-- Podcasts -->
+    {
+      podcasts.length > 0 && (
+        <section class="content-margin" data-mos="fade-up">
+          <h2 class="h2 mb-10">{t("press_podcasts")}</h2>
+          <div class="divide-y divide-base-800/10 dark:divide-white/10">
+            {podcasts.map((item) => (
+              <div class="flex flex-col gap-3 py-8 md:flex-row md:items-start md:gap-10">
+                <div class="flex-shrink-0">
+                  <span class="text-primary-accent text-3xl font-bold rounded-full bg-gray-200 dark:bg-white/60 p-4">🎙</span>
+                </div>
+                <div class="flex-1">
+                  <p class="mb-1 text-xl font-semibold">{item.title}</p>
+                  {item.description && (
+                    <p class="text-muted-foreground mb-3 text-base">{item.description}</p>
+                  )}
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group flex items-start gap-3"
+                  >
+                    <span class="text-primary-accent flex-shrink-0 text-xl font-bold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+                    <span class="text-lg font-medium group-hover:text-primary-accent group-hover:underline">{item.linkText ?? item.title}</span>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Artikel -->
+    {
+      articles.length > 0 && (
+        <section class="content-margin" data-mos="fade-up">
+          <h2 class="h2 mb-10">{t("press_articles")}</h2>
+          <div class="divide-y divide-base-800/10 dark:divide-white/10">
+            {articles.map((item) => (
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex flex-col gap-3 py-8 md:flex-row md:items-start md:gap-10"
+              >
+                <div class="flex-1 space-y-6">
+                  <span class="group flex items-start gap-3" >
+                    <span class="text-primary-accent flex-shrink-0 text-xl font-bold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+                    <span class="text-lg font-medium group-hover:text-primary-accent group-hover:underline">{item.title}</span>
+                  </span>
+                  {item.description && (
+                    <p class="text-muted-foreground text-base">{item.description}</p>
+                  )}
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      items.length === 0 && (
+        <p class="text-muted-foreground py-20 text-center">{t("press_coming_soon")}</p>
+      )
+    }
+  </div>
+
+  <CtaCentered />
+</BaseLayout>

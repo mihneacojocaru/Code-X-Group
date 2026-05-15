@@ -42,4 +42,14 @@ export interface SanityPost {
   mappingKey?: string;
 }
 
+export interface SanityPress {
+  _id: string;
+  category: "podcast" | "article";
+  title: string;
+  description?: string;
+  url: string;
+  linkText?: string;
+  order?: number;
+}
+
 export type { PortableTextBlock };

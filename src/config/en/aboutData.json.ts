@@ -1,8 +1,8 @@
 import { type AboutData } from "../types/configDataTypes";
-import strategyImage from "@images/strategy.jpg";
-import industrialImage from "@images/industrial.jpg";
-import dataSpacesImage from "@images/data-spaces.jpg";
-import coworkingImage from "@images/coworking.jpg";
+import strategyImage from "@images/abouts/GraphikKI-&Datenökosystemstrategie.png";
+import industrialImage from "@images/abouts/GraphikIndustrialAI&DataEcosystems.png";
+import dataSpacesImage from "@images/abouts/GraphikDatenökonomie&DataSpaces.png";
+import coworkingImage from "@images/abouts/GraphikVenture,M&A&Innovation.png";
 
 const aboutData: AboutData = {
   heroBadge: "Code-X Group",
@@ -141,7 +141,7 @@ const aboutData: AboutData = {
   referencesHeading: "Selected Engagements",
   references: [
     {
-      title: "VDMA Fachverband Software und Digitalisierung",
+      title: "VDMA",
       description:
         "Expert in platform economics and business software, Working Group CDO & CIO, Task Force Manufacturing-X",
     },

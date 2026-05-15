@@ -21,6 +21,7 @@ const SYNC_TARGETS = [
   "index.astro",
   "about.astro",
   "contact.astro",
+  "press.astro",
   "blog/index.astro",
   "blog/[...slug].astro",
   "categories/index.astro",
