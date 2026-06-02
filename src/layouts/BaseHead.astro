@@ -30,9 +30,14 @@ const {
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" initial-scale="1.0" />
 
-<!-- Clash Grotesk font: https://www.fontshare.com/fonts/clash-grotesk -->
-<link rel="preconnect" href="https://api.fontshare.com" />
-<link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@1&display=swap" rel="stylesheet" />
+<!-- Clash Grotesk: self-hosted variable font (@font-face in global.css) -->
+<link
+  rel="preload"
+  href="/fonts/clash-grotesk-variable.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
 
 <!-- Favicons -->
 <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
