@@ -17,8 +17,8 @@ const siteData: SiteDataProps = {
 
   // default image for meta tags if the page doesn't have an image already
   defaultImage: {
-    src: "/images/theme.png",
-    alt: "Code-X Consulting – Turning Data Spaces into Business",
+    src: "/images/og-image-en.png",
+    alt: "Code-X Consulting – Data Spaces That Pay Off",
   },
 };
 

@@ -13,8 +13,8 @@ const siteData: SiteDataProps = {
   },
 
   defaultImage: {
-    src: "/images/theme.png",
-    alt: "Code-X Consulting – Turning Data Spaces into Business",
+    src: "/images/og-image.png",
+    alt: "Code-X Consulting – Wirtschaftlich erfolgreiche Datenräume",
   },
 };
 
