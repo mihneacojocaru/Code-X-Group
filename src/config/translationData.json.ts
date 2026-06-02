@@ -77,7 +77,7 @@ export const textTranslations = {
     press_heading: "Presse & Medien",
     press_description: "Interviews, Podcasts und Artikel rund um KI, Datenräume und Plattform-Ökosysteme.",
     press_podcasts: "Podcasts",
-    press_articles: "Artikel",
+    press_articles: "Artikel in der Frankfurter Allgemeinen Zeitung F.A.Z.",
     press_coming_soon: "Bald verfügbar.",
     press_see_more: "Weitere Artikel anzeigen",
 
@@ -134,7 +134,7 @@ export const textTranslations = {
     press_heading: "Press & Media",
     press_description: "Interviews, podcasts and articles on AI, data spaces and platform ecosystems.",
     press_podcasts: "Podcasts",
-    press_articles: "Articles",
+    press_articles: "Articles in the Frankfurter Allgemeine Zeitung (F.A.Z.)",
     press_coming_soon: "Coming soon.",
     press_see_more: "See more articles",
 

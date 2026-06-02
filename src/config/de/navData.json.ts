@@ -6,7 +6,7 @@ const navConfig: navItem[] = [
     link: "/",
   },
   {
-    text: "Über uns",
+    text: "Über mich",
     link: "/about",
   },
   {

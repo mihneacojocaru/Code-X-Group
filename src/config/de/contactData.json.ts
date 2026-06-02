@@ -1,7 +1,7 @@
 import { type ContactData } from "../types/configDataTypes";
 
 const contactData: ContactData = {
-  badge: "Code-X Group",
+  badge: "Code-X Consulting",
   heading: "Let's talk.",
   description:
     "Wenn Sie an Datenräumen, KI oder Plattform-Ökosystemen arbeiten und echten Markterfolg erzielen möchten – sprechen wir.",

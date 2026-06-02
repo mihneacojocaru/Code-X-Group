@@ -52,23 +52,16 @@ const lightboxImages = await Promise.all(
     <Lines class="absolute top-24 right-0" />
   </section>
 
-  <!-- Mission & Vision -->
+  <!-- Mission -->
   <section class="bg-base-50/50 dark:bg-base-900/30 py-16 md:py-20">
     <div class="site-container">
-      <div class="grid gap-12 md:grid-cols-2">
+      <div class="max-w-3xl">
         <div data-mos="fade-right">
           <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
             {ab.missionBadge}
           </span>
           <h2 class="h2 mb-6">{ab.missionHeading}</h2>
           <p class="text-muted-foreground leading-relaxed">{ab.missionText}</p>
-        </div>
-        <div data-mos="fade-left">
-          <span class="text-primary-accent mb-3 inline-block text-sm font-medium tracking-tighter">
-            {ab.visionBadge}
-          </span>
-          <h2 class="h2 mb-6">{ab.visionHeading}</h2>
-          <p class="text-muted-foreground leading-relaxed">{ab.visionText}</p>
         </div>
       </div>
     </div>
@@ -90,7 +83,7 @@ const lightboxImages = await Promise.all(
           <Image
             src={profileImage}
             alt="Christoph Herr"
-            class="mx-auto w-full max-w-md rounded-2xl object-cover object-top shadow-lg md:aspect-3/4"
+            class="tilt-card mx-auto w-full max-w-md rounded-2xl object-cover object-top shadow-lg md:aspect-3/4"
             width={600}
             height={800}
           />

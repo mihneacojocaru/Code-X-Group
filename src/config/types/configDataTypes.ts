@@ -122,9 +122,6 @@ export interface AboutData {
   missionBadge: string;
   missionHeading: string;
   missionText: string;
-  visionBadge: string;
-  visionHeading: string;
-  visionText: string;
   whyPartner: WhyPartnerData;
   expertiseBadge: string;
   expertiseHeading: string;

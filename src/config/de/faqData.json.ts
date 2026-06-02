@@ -2,7 +2,7 @@ import { type FaqItem } from "../types/configDataTypes";
 
 export const faqData: FaqItem[] = [
   {
-    question: "Was macht Code-X Group?",
+    question: "Was macht Code-X Consulting?",
     answer: `Code-X verbindet Technologie und Business, Regulierung und Markt, Innovation und Investment.
     Wir begleiten Organisationen von geförderten Projekten hin zu nachhaltigen Geschäftsmodellen –
     mit klarer Strategie, starker Governance und skalierbaren Ansätzen.`,

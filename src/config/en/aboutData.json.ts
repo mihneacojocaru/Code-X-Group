@@ -5,20 +5,15 @@ import dataSpacesImage from "@images/abouts/GraphikDatenökonomie&DataSpaces.png
 import coworkingImage from "@images/abouts/GraphikVenture,M&A&Innovation.png";
 
 const aboutData: AboutData = {
-  heroBadge: "Code-X Group",
-  heroHeading: "We Make Data Spaces Economically Viable.",
+  heroBadge: "Code-X Consulting",
+  heroHeading: "Data Spaces That Pay Off",
   heroText:
-    "Code-X guides organizations from funded projects to sustainable business models — with clear strategy, strong governance, and scalable approaches.",
+    "I guide organizations from funded projects to sustainable business models — with clear strategy, strong governance, and scalable approaches.",
 
   missionBadge: "Mission",
-  missionHeading: "What Drives Us",
+  missionHeading: "What Drives Me",
   missionText:
     "Despite billions in European investment, many data space initiatives fail. The root cause is not in technology — but in strategy and operations. Code-X bridges this gap: between technology and business, regulation and market, innovation and investment.",
-
-  visionBadge: "Vision",
-  visionHeading: "Where We're Headed",
-  visionText:
-    "Code-X becomes the leading European force in data space strategy, AI-driven ecosystems, and platform and investment models — with a clear focus on market impact and scalability.",
 
   whyPartner: {
     badge: "Christoph Herr",
@@ -112,7 +107,7 @@ const aboutData: AboutData = {
   ],
 
   servicesBadge: "Services",
-  servicesHeading: "What We Offer",
+  servicesHeading: "What I Offer",
   services: [
     {
       title: "Data Space Strategy",

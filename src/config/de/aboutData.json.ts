@@ -5,20 +5,15 @@ import dataSpacesImage from "@images/abouts/GraphikDatenökonomie&DataSpaces.png
 import coworkingImage from "@images/abouts/GraphikVenture,M&A&Innovation.png";
 
 const aboutData: AboutData = {
-  heroBadge: "Code-X Group",
-  heroHeading: "Wir machen Datenräume wirtschaftlich.",
+  heroBadge: "Code-X Consulting",
+  heroHeading: "Wirtschaftlich erfolgreiche Datenräume",
   heroText:
-    "Code-X begleitet Organisationen von geförderten Projekten hin zu nachhaltigen Geschäftsmodellen – mit klarer Strategie, starker Governance und skalierbaren Ansätzen.",
+    "Ich begleite Organisationen von geförderten Projekten hin zu nachhaltigen Geschäftsmodellen – mit klarer Strategie, starker Governance und skalierbaren Ansätzen.",
 
   missionBadge: "Mission",
-  missionHeading: "Was uns antreibt",
+  missionHeading: "Was mich antreibt",
   missionText:
     "Trotz milliardenschwerer europäischer Investitionen scheitern viele Datenraum-Initiativen. Die Ursache liegt nicht in der Technologie – sondern in Strategie und Operations. Code-X schließt diese Lücke: zwischen Technologie und Business, Regulierung und Markt, Innovation und Investment.",
-
-  visionBadge: "Vision",
-  visionHeading: "Wohin wir wollen",
-  visionText:
-    "Code-X wird die führende europäische Kraft in Datenraum-Strategie, KI-getriebenen Ökosystemen und Plattform- und Investitionsmodellen – mit klarem Fokus auf Marktwirkung und Skalierbarkeit.",
 
   whyPartner: {
     badge: "Christoph Herr",
@@ -112,7 +107,7 @@ const aboutData: AboutData = {
   ],
 
   servicesBadge: "Leistungen",
-  servicesHeading: "Was wir anbieten",
+  servicesHeading: "Was ich anbiete",
   services: [
     {
       title: "Data Space Strategie",
